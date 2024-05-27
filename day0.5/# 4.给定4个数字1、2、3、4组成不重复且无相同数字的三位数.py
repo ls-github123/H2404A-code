@@ -1,5 +1,5 @@
 # 4. 给定4个数字1、2、3、4 组成不重复且无相同数字的三位数
-count = 0
+count = 0 #初始化计数器
 list1 = []
 for i in range(1,5):
     for j in range(1,5):
