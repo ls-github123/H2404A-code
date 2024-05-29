@@ -1,0 +1,41 @@
+# 元组  -- 由一系列变量组成的不可变序列
+# 不可变，没有增删改方法   所有操作都不会作用于原数据
+# 序列：支持索引和切片
+
+# 定义多个数据的元组
+tuple1 = (10, 15, 25, ['TPM', 'CPU', 'console'], 'bitlocker')
+print(tuple1)
+print(type(tuple1))
+
+# 定义单个数据元组
+tuple2 = (5,)  # 元组里如果只有单个数据，后面需加 ',' 否则会变为字符串类型或整型(与单数据本身的类型一致)
+print(tuple2)
+print(type(tuple2))
+
+
+# 元组的索引与切片
+# 索引  -- 元组[索引] 从0开始，从左往右 从右往左 从-1开始
+# 切片 -- 元组[开始下标:结束下标:步长]
+print(tuple1[1:4:2])
+print(tuple1[::-1])
+print(tuple1[:4])
+print(tuple1[:])
+
+
+# 循环遍历元组
+for i in tuple1:
+    if str(i).isdigit():
+        print(i)
+        
+# 补充方法
+tuple3 = (1,2,3,4,5)
+tuple4 = ('hello', 56 ,7)
+# 元组 + 元组 -- 拼接
+print(tuple3 + tuple4)
+
+# 元组 * 整型 -- 复制
+print(tuple4 * 3)
+
+# 变量 in 元组 -- 判断变量是否在元组中，在则返回 true 不在返回false   not in 同理
+print('CPU' in tuple1)
+print('console' not in tuple1)
