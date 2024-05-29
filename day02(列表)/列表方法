@@ -92,9 +92,45 @@ list_data[4] = 'HSD'
 print(list_data)
 
 # 列表数据查询
-# index() -- list.index(数据, start, end)  查询数据在范围中第一次出现的位置在整个列表中的下标
+# index() -- list.index(数据, start, end)  查询数据在范围中第一次出现的位置在整个列表中的下标  如果数据不存在则报错
 # 不指定范围则默认从整个列表中查询
 print(list_data.index('TPM'))
 
 # count()  --  list.count(数据)  统计数据在整个列表中出现的次数，如果数据不存在，则次数为 0
 print(list_data.count('CPU'))
+
+# 列表补充方法
+
+# 列表 + 列表 -- 拼接 
+print(list_data + list_indeks)
+
+# 列表 * 整型
+print(list_data * 3)
+
+# 元素 in 列表  --判断元素是否在列表中，如果在则返回 true 如果不在则返回false
+# not in -- 不在则返回true,在则返回false
+print('TPM' in list_data)
+
+
+# 列表排序
+# sort()   -- list.sort(key规则, reverse反转)
+# 不指定参数，默认将列表中的数据进行升序排序，指定reverse = true 实现列表中的元素降序排序
+print(list_num.sort(reverse = True))
+
+# abs()  -- abs(数字) 获取数字的绝对值
+print(abs(-10))
+
+# 列表反转
+# 方法一: list[::-1]
+print(list_data[::-1])
+# 方法二：list.reverse()
+list_indeks.reverse()
+print(list_indeks)
+
+
+# 列表嵌套
+list_service = [['ecs', ['rds', 'ssh']], 'disk', 'vpn']
+
+# 列表数据修改 --> 通过下标找到要修改的数据，重新赋值
+list_service[0][1][0] = 'VPS'
+print(list_service)
