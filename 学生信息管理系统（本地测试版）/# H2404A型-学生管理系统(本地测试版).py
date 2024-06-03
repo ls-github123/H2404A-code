@@ -31,6 +31,8 @@ def bcrypt_module(user_password):
 def sing_account():
     print('-------- 欢迎使用H2404A型学生信息管理系统 --------')
     print('请先登录或注册')
+    file_path = 'user_account.txt' # 定义存放用户账户和密码的文件路径
+    verification_info = accountinfo_extraction(file_path) # 接收accountinfo_extraction()函数中返回的用户信息字典数据
     user_have_acoount = input('请输入任意字符进入注册界面(如你已有账号,请直接点击<enter>键跳过):')
     if user_have_acoount == '': # ''值 -- 点击<enter>直接跳过，否则将执行else
         return login_account()
@@ -38,28 +40,35 @@ def sing_account():
         print('开始进行用户账户注册')
         user_mobile = input('请输入用户手机号(11位数字):')
         user_email = input('请输入用户邮箱(支持@qq.com、@sino.com、@163.com、@gmail.com、@outlook.com):')
-        user_password = input('请输入用户密码(长度必须在6位以上,可包含数字、大小写字母、下划线):')
-        
+        user_password = input('请输入用户密码(长度必须在6位以上,可包含数字、大小写字母、下划线):')      
     re_user_mobile = re.match(r'^1[3-9]\d{9}$',user_mobile)
     re_user_email = re.match(r'^[A-Za-z0-9_]{6,14}@(qq|sino|163|gmail|outlook)\.com$',user_email)
     re_user_password = re.match(r'^[A-Za-z0-9_]{6,}$',user_password) 
-    
     if re_user_mobile and re_user_email and re_user_password:
-        print('注册信息校验通过,请等待系统生成6位验证码')
-        verification_code = str(random.randint(100000,999999))
-        time.sleep(3) # 程序休眠3秒
-        print(f'生成的验证码为:{verification_code}')
-        input_verification_code = input('请输入系统返回的验证码:')
-        if input_verification_code == verification_code:
-            print('验证码正确')
-            hashed_password = bcrypt_module(user_password)  # 将用户密码传递给bcrypt_module函数，并接收返回的哈希值
-            with open('user_account.txt', 'a', encoding='utf8') as file:
-                file.write(f'mobile:{user_mobile} email:{user_email} hashed:{hashed_password}\n')
-            print('用户账户注册完成')
-            print('您的账户信息将保存在本地路径下的<user_account.txt>文件中,密码已经过bcrypt算法进行高强度哈希加密')
-            login_account() # 注册完成,自动进入登录界面
+        # 注册信息查重，如手机号和邮箱有任一注册过，则需更换
+        if user_mobile in verification_info or user_email in verification_info:
+            print('输入的账号(手机号或邮箱)已注册过,请更换!')
+            return sing_account()
         else:
-            print('输入的验证码错误,注册失败!')
+            print('注册信息校验通过,请等待系统生成6位验证码')
+            verification_code = str(random.randint(100000,999999))
+            time.sleep(3) # 程序休眠3秒
+            print(f'生成的验证码为:{verification_code}')
+            input_verification_code = input('请输入系统返回的验证码:')
+            if input_verification_code == verification_code:
+                print('验证码正确')
+                hashed_password = bcrypt_module(user_password)  # 将用户密码传递给bcrypt_module函数，并接收返回的哈希值
+                with open('user_account.txt', 'a', encoding='utf8') as file:
+                    file.write(f'mobile:{user_mobile} email:{user_email} hashed:{hashed_password}\n')
+                print('用户账户注册完成')
+                print('您的账户信息将保存在本地路径下的<user_account.txt>文件中,密码已经过bcrypt算法进行高强度哈希加密')
+                login_account() # 注册完成,自动进入登录界面
+            else:
+                print('输入的验证码错误,注册失败!')
+                return False
+    else:
+        print('输入的账号或密码不符合系统规范,注册失败!')
+        return False
 
 # 定义账户信息提取模块
 def accountinfo_extraction(file_path):
@@ -101,7 +110,6 @@ def accountinfo_extraction(file_path):
                 dict_user_accoutninfo[mobile] = password
             if email and password:
                 dict_user_accoutninfo[email] = password
-    
     return dict_user_accoutninfo  # 返回字典数据
 
 # 定义用户账户登录模块
@@ -114,7 +122,7 @@ def login_account():
         user_login = input('请输入用户账号(注册时使用的邮箱或密码):')
         user_login_password = getpass.getpass('请输入您的密码(已使用getpass模块隐藏明文,请直接输入后按<enter>确认):')
         # 校验输入的账号和密码是否匹配
-        if user_login in verification_info:
+        if user_login in verification_info: # 输入的账号user_login作为键，是否在返回的用户注册信息字典verification_info中存在
             # 输入的用户账号信息user_login作为字典的键
             # 对应的值—密码哈希字符串  使用.encode()转换为'utf-8'编码字节串，并用新变量hashed_password接收
             # bcrypt处理的是'字节串'而不是字符串
@@ -143,16 +151,18 @@ def login_account():
 def show_allinfo(all_student_info):
     if len(all_student_info) == 0:
         print('!!!系统中暂未录入学生信息,请先添加!!!')
+        return add_stuinfo(all_student_info)
     else:
-        print(f'系统中的所有学生信息为:{all_student_info}')
+        for i, stu_info in enumerate(all_student_info, start = 1):
+            print(f'序号:{i}, 系统编号:{stu_info['id']}, 姓名:{stu_info['name']}, 性别:{stu_info['gender']}, 身份证号:{stu_info['id_num']}')
 
 # main() 2.向系统中添加学生信息
 def add_stuinfo(all_student_info):
     new_stuinfo = {} # 定义一个空字典，用于暂存单个学生信息
+    print('向系统中添加学生信息')
     stu_name = input('请输入学生姓名:')
     stu_gender = input('请输入学生性别(男/女):')
     stu_idnum = input('请输入学生身份证号(18位字符,最后一位如为X必须为大写):')
-    
     # 正则校验输入信息合规性
     # 输入信息必须为中文且不能为空
     re_stu_name = re.match(r'^[\u4e00-\u9fa5]{1,}$',stu_name)
@@ -177,13 +187,15 @@ def add_stuinfo(all_student_info):
 # main() 3.查询指定学生信息
 def select_stuinfo(all_student_info):
     searched_stuinfo = [] # 定义一个空列表，寄存查询到的学生信息
+    print('查询指定学生信息')
     search_input = input('请输入要查询的学生姓名、系统编号或身份证号:')
+    # found = False
     for select_stuinfo in all_student_info: # 遍历学生信息存储列表
         if select_stuinfo['name'] == search_input or select_stuinfo['id'] == search_input or select_stuinfo['id_num'] == search_input:
             # 在学生信息存储列表中遍历个体字典,使用临时变量select_stuinfo进行接收
             # 如果临时变量select_stuinfo接收到个体字典name键或id_num键的值等于输入值search_input,则将该个体字典写入寄存列表
             searched_stuinfo.append(select_stuinfo)
-    if searched_stuinfo: # 解决问题 -- 如果两个及以上学生姓名重复，会同时展示两个学生信息
+    if searched_stuinfo: # 解决问题 -- 如果两个及以上学生姓名重复，会同时展示所有符合条件的学生信息
         print('找到以下匹配的学生信息:')
         for i, students_info in enumerate(searched_stuinfo, start = 1):
             print(f'序号:{i}, 系统编号:{students_info['id']}, 姓名:{students_info['name']}, 性别:{students_info['gender']}, 身份证号:{students_info['id_num']}')
@@ -193,6 +205,7 @@ def select_stuinfo(all_student_info):
 
 # main() 4.修改指定学生信息
 def modify_stuinfo(all_student_info):
+    print('修改系统中指定学生信息')
     select_stuinfo(all_student_info) # 提高代码重用性
     choice_stuinfo = input('请输入要修改信息的学生系统编号或身份证号:')
     found = False  # 添加一个标志变量来跟踪是否找到学生信息
@@ -242,15 +255,18 @@ def modify_stuinfo(all_student_info):
         print('系统中没有该学生信息!')
 
 # main() 5.删除指定学生信息
-def del_stuinfo(all_student_info): 
+def del_stuinfo(all_student_info):
+    print('删除系统中指定学生信息')
     select_stuinfo(all_student_info) # 提高代码重用性
     delete_stuinfo = input('请输入要删除信息的学生系统编号或身份证号:')
+    found = False # 添加标志位
     for stuinfo in all_student_info:
         if stuinfo['id'] == delete_stuinfo or stuinfo['id_num'] == delete_stuinfo:
-            stuinfo_index = int(all_student_info.index(stuinfo)) # 查找对应学生信息在列表中的下标序号
-            enter_del = input('请确认是否删除改名学生信息(Y -确认删除, E -取消):')
+            found = True
+            # stuinfo_index = int(all_student_info.index(stuinfo)) # 查找对应学生信息在列表中的下标序号
+            enter_del = input('请确认是否删除该名学生信息(Y -确认删除, E -取消):')
             if enter_del.upper() == 'Y':
-                all_student_info.pop(stuinfo_index)
+                all_student_info.remove(stuinfo)
                 print(f'学生:({stuinfo['name']}),系统编号:({stuinfo['id']}),相关信息已从系统中删除!')
                 return True
             elif enter_del.upper() == 'E':
@@ -260,7 +276,10 @@ def del_stuinfo(all_student_info):
                 print('输入的信息无效!')
                 return False
         else:
-            print('系统中没有该学生信息!')
+            print('输入的信息无效!')
+            return False
+    if not found:
+        print('系统中没有该学生信息!')
     
 
 # 定义主函数
@@ -285,5 +304,5 @@ def main():
         else:
             print('输入的参数无效,请重新输入!')
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # 文件作为脚本直接执行
     main()
