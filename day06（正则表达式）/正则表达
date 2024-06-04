@@ -1,0 +1,32 @@
+# 正则表达式
+import re
+
+# while True:
+#     str1 = input('输入字符串:')
+#     ret = re.match(r'^速度与激情[2-47-9a-zA-Z]$',str1)
+#     print(ret.group())
+#     break
+
+str_mobile = input('输入手机号:')
+re_str_mobile = re.match(r'^1[3-9]\d{9}$',str_mobile)
+print(re_str_mobile.group())
+
+str_email_qq = input('请输入一个qq邮箱:')
+# re_str_email = re.match(r'^[A-Za-z0-9]{6,14}@qq\.com$',str_email_qq)
+re_str_email = re.match(r'^[a-zA-Z0-9]{6,14}@(qq|163|139|sino)\.(com|cn)$',str_email_qq)
+print(re_str_email.group())
+print(re_str_email)
+
+
+if re_str_email:
+    operators = re_str_email.group(1)
+    if operators == 'qq':
+        print('腾讯')
+    elif operators == '163':
+        print('网易')
+    elif operators == '139':
+        print('移动')
+    elif operators == 'sino':
+        print('新浪')
+else:
+    print(f'邮箱不合规')
