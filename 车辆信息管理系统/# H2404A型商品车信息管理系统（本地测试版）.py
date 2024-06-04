@@ -64,10 +64,10 @@ def sing_account():
                 login_account() # 注册完成,自动进入登录界面
             else:
                 print('输入的验证码错误,注册失败!')
-                return False
+                return sing_account()
     else:
         print('输入的账号或密码不符合系统规范,注册失败!')
-        return False
+        return sing_account()
 
 # 定义账户信息提取模块
 def accountinfo_extraction(file_path):
