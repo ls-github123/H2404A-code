@@ -1,0 +1,94 @@
+# 面向对象编程
+# 面向对象:建立在面向过程的基础上
+# 核心:对象，找到一个对象帮助执行具体操作，只需要得到最终结果即可
+# 对象 -- 具体存在的事务，可以直接被调用的
+
+# 类与对象的区别  -- 类是创建对象的模板
+
+# 类的组成: 名称:类名   属性:一组数据  类的方法:类提供的可以进行一定操作的方法(行为)
+# 特征即属性 行为即方法
+
+# 实战
+# 定义类 -- 类名 首字母大写-大驼峰命名法
+# 如果当前类没有要继承的父类，括号中可以不写数据;可以省略小括号
+# object 所有类的顶级父类  python3中所有类都是新式类(无论在括号中写不写object)
+# 将object封装到所有类的底层
+# class 类名(要继承的父类):
+     # 属性
+     # 方法
+
+# 在python3中属性相同
+# class Person(object):
+# class Person():
+# class Person:
+
+# 在类中定义方法  -- 
+# 将具有相同特征和行为的事务抽象出一个类
+# 特征即属性，行为即方法
+class Dog:
+    def __init__(self, name, age ,gender, color):
+        self.name = name
+        self.age = age
+        self.gender = gender
+        self.color = color
+        
+    def run(self):
+        print('小狗会跑')
+    def eat(self):
+        print('小狗会吃')
+    def info(self): # 实例方中使用实例属性 --> self.属性名
+        print(f'小狗的名字叫{self.name},小狗的年龄是{self.age},是个小{self.gender}狗，小狗的毛发颜色为{self.color}')
+
+# 对象 --> 通过类创建 --> 在类外进行创建
+# 创建对象也称之为实例化对象 --> 对象名 = 类名()
+# 创建出来的对象称之为实例对象
+wangcai = Dog()
+huangzi = Dog()
+
+# 让实例对象调用实例方法 -- 对象名.方法名()
+wangcai.run()
+huangzi.eat()
+
+# # 给实例对象增加实例属性  -- 对象名.属性名 = 属性值()
+wangcai.name = '旺财'
+wangcai.gender = '公'
+wangcai.age = 2
+
+huangzi.name = '黄子'
+huangzi.age = 3
+huangzi.color = '黄色'
+
+# 获取实例实例对象实例属性  对象名.属性名
+print(huangzi.name)
+print(huangzi.color)
+print(wangcai.name)
+print(wangcai.age)
+
+d = Dog('黄子', 23, '母', '黄色')
+d.info()
+
+
+# 魔法方法
+# 表象: 以 __开头, __结尾的方法
+# 魔法方法的本质: 不需要手动调用,会在特定情况下自动调用
+# 1.  __init__()  -- 掌握
+# 变量初始化或赋值操作
+# def __init__(self):
+    
+# 2.  __new__()
+# new 方法 --> 返回父类new出来的实例 -->没有继承的父类 --> 使用object顶级父类
+    # cls 类对象本身
+    # 作用: 类的构造器，给类实例化对象
+    # __new__在__init__之前执行
+    # 调用:类创建对象的过程就是执行new
+    
+# 3.  __str__(self)
+# 调用：打印对象时调用str
+# str方法功能:返回一个字符串
+# 作用:返回对象的描述信息
+# 使用print输出对象时,如不指定值，则print(对象名)默认输出内存地址
+
+# 4.  __del__(self)
+# 调用: 在对象销毁前调用，当对象没用的时候
+# 作用: 在对象销毁前调用，释放资源
+# 底层内置，正常情况不需手动调用
