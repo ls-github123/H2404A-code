@@ -53,18 +53,18 @@ class Person:
         print(f'年龄{self.age}至500之间的回文奇数为:{num_list}, 共有:{len(num_list)}个')
     
 # 调用
-name = input('请输入姓名:')
+Name = input('请输入姓名:')
 BirthYear = int(input('请输入出生年份:'))
-age = int(input('请输入年龄:'))
+Age = int(input('请输入年龄:'))
 
-Mylife = Person(name, BirthYear)
+Mylife = Person(Name, BirthYear)
 Mylife.ShowMyLife()
 
-LeapYear = Person(name, BirthYear)
+LeapYear = Person(Name, BirthYear)
 LeapYear.ShowLeapYear()
 
-CanRecite = Person(name, age)
+CanRecite = Person(Name, Age)
 CanRecite.CanRecite()
 
-ShowNum = Person(name, age)
+ShowNum = Person(Name, Age)
 ShowNum.ShowNum()
