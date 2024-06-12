@@ -145,3 +145,58 @@ print(list(my1))
 
 # 3.通过tupel()强转将可迭代对象中的数据存放在元组中返回
 print(tuple(my1))
+
+# 迭代器的优化
+class MyIterable_1:
+    def __init__(self):
+        self.list1 = []
+        
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        result = self.list1
+        self.list1.append('张三')
+        self.list1.append('黄子')
+        self.list1.append('佩奇')
+        return result
+
+my2 = MyIterable_1()
+print(f'迭代器优化:{my2.__next__()}')
+
+
+# 生成器
+# 生成器本质上是一种特殊的迭代器
+# 获取数据 --> for循环、list强转、tuple强转
+# 创建生成器
+# 1.列表推导式 -- 本质上是通过for循环往列表中增加数据
+
+# 创建生成器的第一种方式:将列表推导式的[]换成()
+# list_1 = [i for i in range(1,11) if i % 2 == 0]
+tuple_1 = (i ** 2 for i in range(1,11) if i % 2 == 0)
+print(tuple(tuple_1)) # tuple强转
+print(type(tuple_1))  # --> generator
+
+for t in tuple_1:
+    print(t)
+
+# 2.集合推导式
+set1 = {i ** 2 for i in range(1,11) if i % 2 == 0}
+print(set1)
+print(type(set1))
+
+# 创建生成器的第二种方式:将函数中的return替换成yield
+# 定义一个函数，返回数字1-10
+# yield 1.将值返回 使用了yield的函数成为生成器
+# 保存当前运行状态，挂起并唤醒生成器
+def func():
+    for i in range(1,11):
+        yield i
+print(list(func()))
+
+def func2():
+    for i in range(1,11):
+        yield i
+        print('----------')      
+for i in func2():
+    print(i)
