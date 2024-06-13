@@ -2,7 +2,7 @@
 class IterList:
     def __init__(self):
         self.list = []
-        self.index = 0
+        self.index = - 1
         
     def add(self,num):
         self.list.append(num)
@@ -11,10 +11,10 @@ class IterList:
         return self
     
     def __next__(self):
-        if self.index < 1:
-            num = self.list[self.index]
-            self.index += 1
-            return self.list[::-1]
+        if self.index >= -len(self.list):
+            data = self.list[self.index]
+            self.index -= 1
+            return data
         else:
             raise StopIteration
         
