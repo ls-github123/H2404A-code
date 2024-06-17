@@ -1,0 +1,2645 @@
+{
+    "type": "MySQLNotebook",
+    "version": "1.0",
+    "caption": "DB Notebook",
+    "content": "\\about\nSHOW FULL PROCESSLIST\nSHOW DATABASES\nUSE H2404A\nSHOW TABLES\n# 第一题\nCREATE TABLE book(\n    id TINYINT PRIMARY KEY AUTO_INCREMENT,\n    name VARCHAR(5) NOT NULL,\n    price DECIMAL(5,2) NOT NULL,\n    count TINYINT NOT NULL,\n    pub_data DATE NOT NULL\n); \nDESC book; # 查询表结构\nINSERT INTO book VALUES\n(1, '三国演义', 35.5, 10, '2001-6-6'),\n(0, '红楼梦', 16.8, 10, '2007-8-19'),\n(0, '西游记', 27.47, 20, '2010-10-16'),\n(0, '水浒传', 166, 25, '2023-7-25'),\n(0, '青铜葵花', 56.8, 15, '2024-12-23'); # 添加数据\nSELECT * FROM book; # 查询表中所有数据\n# 第二题\n# 创建一个自己名字的数据库\nCREATE DATABASE ziji;\nSHOW DATABASES\nUSE ziji; # 选择创建的数据库\nCREATE TABLE user(\n    id TINYINT PRIMARY KEY AUTO_INCREMENT, # id 字段,整型,主键自增\n    name VARCHAR(10), # name字段,可变长度为10\n    gender ENUM('男','女'), # gender字段,enum单选\n    height DECIMAL(5,2),\n    birthday DATE\n); # 定义user用户表\nDESC user; #查询表结构\nINSERT INTO user VALUES # 给表增加数据\n(1, '张三', '男', 178.56, '1998-01-02'),\n(0, '李四', '女', 156.24, '1997-03-19'),\n(0, '王五', '男', 182.36, '1998-11-13'),\n(0, '赵六', '女', 163.55, '1998-12-28');\nSELECT * FROM user; # 查询表中所有数据\n# 第三题\nCREATE DATABASE ziji0617 CHARSET utf8; #创建数据库名字加当天日期\nUSE ziji0617; #选择使用该数据库\nCREATE TABLE stu(\n    Uid TINYINT PRIMARY KEY AUTO_INCREMENT,\n    Uname VARCHAR(5) NOT NULL,\n    Usal DECIMAL(7,2) NOT NULL,\n    Uhiredate DATE NOT NULL,\n    Upid TINYINT NOT NULL\n); # 实现创建表 stu\nDESC stu;\nINSERT INTO stu VALUES\n(1001, '李玉兰', 12500, '2017-09-18', 40),\n(1002, '翠花', 10000, '2016-12-21', 20),\n(1003, '张三疯', 35000, '2014-10-21', 10),\n(1004, '展昭', 20040, '2018-01-22', 10),\n(1005, '李有才', 9000, '2017-11-04', 20),\n(1006, '张大民', 8850, '2018-01-16', 40),\n(1007, '乔丹', 12500, '2018-01-22', 50),\n(1008, '詹姆斯', 30500, '2018-08-21', 20);\nALTER TABLE stu MODIFY Uid SMALLINT AUTO_INCREMENT; \nDESC stu \nINSERT INTO stu VALUES\n(1001, '李玉兰', 12500, '2017-09-18', 40),\n(1002, '翠花', 10000, '2016-12-21', 20),\n(1003, '张三疯', 35000, '2014-10-21', 10),\n(1004, '展昭', 20040, '2018-01-22', 10),\n(1005, '李有才', 9000, '2017-11-04', 20),\n(1006, '张大民', 8850, '2018-01-16', 40),\n(1007, '乔丹', 12500, '2018-01-22', 50),\n(1008, '詹姆斯', 30500, '2018-08-21', 20);\nSELECT * FROM stu; # 查询表中所有数据\n# 第四题\nCREATE TABLE student(\n    id TINYINT PRIMARY KEY AUTO_INCREMENT,\n    name VARCHAR(5) NOT NULL,\n    age TINYINT NOT NULL,\n    sex ENUM('男', '女') NOT NULL,\n    scid SMALLINT NOT NULL\n); # 实现创建表 student,并正确指定字段\nDESC student;\nINSERT INTO student VALUES\n(1, '付林泽', 18, '男', 101),\n(0, '田世旋', 18, '男', 101),\n(0, '刘佳美', 17, '女', 101),\n(0, '朱旭东', 19, '男', 102),\n(0, '孙晓虎', 20, '男', 102),\n(0, '狄超', 16, '男', 102); # 成功添加数据\nSELECT * FROM student; # 查询表中所有数据\n# 第五题\nCREATE TABLE 李硕(\n    id TINYINT PRIMARY KEY AUTO_INCREMENT,\n    Sname VARCHAR(20) NOT NULL,\n    Score DECIMAL(4,2) NOT NULL,\n    Age TINYINT NOT NULL,\n    Gender ENUM('男','女') NOT NULL,\n    birthday DATE NOT NULL\n); # 创建表 表名为自己名字\nDESC 李硕; # 查询表结构\nINSERT INTO 李硕 VALUES\n(1, '黑小熊', 56.98, 18, '男', '2005-06-03'),\n(0, '大白', 99.99, 16, '女', '2007-07-19'),\n(0, '蓝多多', 23.45, 23, '女', '2000-09-16'),\n(0, '老红', 45.00, 24, '男', '1999-11-09'),\n(0, '小老刘', 68.00, 15, '男', '2008-02-27'); # 添加数据\nSELECT * FROM 李硕; # 查询表中所有数据\n",
+    "options": {
+        "tabSize": 4,
+        "indentSize": 4,
+        "insertSpaces": true,
+        "defaultEOL": "LF",
+        "trimAutoWhitespace": true
+    },
+    "viewState": {
+        "cursorState": [
+            {
+                "inSelectionMode": false,
+                "selectionStart": {
+                    "lineNumber": 106,
+                    "column": 29
+                },
+                "position": {
+                    "lineNumber": 106,
+                    "column": 29
+                }
+            }
+        ],
+        "viewState": {
+            "scrollLeft": 0,
+            "firstPosition": {
+                "lineNumber": 99,
+                "column": 1
+            },
+            "firstPositionDeltaTop": 46
+        },
+        "contributionsState": {
+            "editor.contrib.folding": {},
+            "editor.contrib.wordHighlighter": false
+        }
+    },
+    "contexts": [
+        {
+            "state": {
+                "start": 1,
+                "end": 1,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 2,
+                            "content": "Welcome to the MySQL Shell - DB Notebook.\n\nPress Ctrl+Enter to execute the code block.\n\nExecute \\sql to switch to SQL, \\js to JavaScript and \\ts to TypeScript mode.\nExecute \\help or \\? for help;",
+                            "language": "ansi"
+                        }
+                    ]
+                },
+                "currentHeight": 147.1875,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 6
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 2,
+                "end": 2,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "69e231be-f869-44ad-fcab-e3acb6c821e7"
+                    ]
+                },
+                "currentHeight": 352,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 21
+                        },
+                        "contentStart": 0,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "cb3a1260-7e6b-4a12-a9e2-b3ff4e3ccd20",
+                    "resultId": "69e231be-f869-44ad-fcab-e3acb6c821e7",
+                    "rows": [
+                        {
+                            "0": 199,
+                            "1": "aurora",
+                            "2": "100.104.164.217:53518",
+                            "3": null,
+                            "4": "Sleep",
+                            "5": 13,
+                            "6": "",
+                            "7": null
+                        },
+                        {
+                            "0": 221,
+                            "1": "aliyun_root",
+                            "2": "127.0.0.1:59604",
+                            "3": null,
+                            "4": "Sleep",
+                            "5": 1,
+                            "6": "",
+                            "7": null
+                        },
+                        {
+                            "0": 227,
+                            "1": "aliyun_root",
+                            "2": "127.0.0.1:33570",
+                            "3": null,
+                            "4": "Sleep",
+                            "5": 682,
+                            "6": "",
+                            "7": null
+                        },
+                        {
+                            "0": 228,
+                            "1": "aliyun_root",
+                            "2": "127.0.0.1:33560",
+                            "3": null,
+                            "4": "Sleep",
+                            "5": 20,
+                            "6": "",
+                            "7": null
+                        },
+                        {
+                            "0": 231,
+                            "1": "aliyun_root",
+                            "2": "127.0.0.1:33586",
+                            "3": null,
+                            "4": "Sleep",
+                            "5": 19,
+                            "6": "",
+                            "7": null
+                        },
+                        {
+                            "0": 30829,
+                            "1": "aliyun_root",
+                            "2": "127.0.0.1:35522",
+                            "3": "mysql",
+                            "4": "Sleep",
+                            "5": 7,
+                            "6": "",
+                            "7": null
+                        },
+                        {
+                            "0": 30836,
+                            "1": "aurora",
+                            "2": "21.9.111.227:42272",
+                            "3": null,
+                            "4": "Sleep",
+                            "5": 2,
+                            "6": "",
+                            "7": null
+                        },
+                        {
+                            "0": 30837,
+                            "1": "aurora",
+                            "2": "21.9.111.233:44920",
+                            "3": null,
+                            "4": "Sleep",
+                            "5": 2,
+                            "6": "",
+                            "7": null
+                        },
+                        {
+                            "0": 271191174,
+                            "1": "ali_root_ls",
+                            "2": "123.113.253.195:52091",
+                            "3": null,
+                            "4": "Sleep",
+                            "5": 19,
+                            "6": "",
+                            "7": null
+                        },
+                        {
+                            "0": 271191203,
+                            "1": "ali_root_ls",
+                            "2": "123.113.253.195:52142",
+                            "3": null,
+                            "4": "Sleep",
+                            "5": 7,
+                            "6": "",
+                            "7": null
+                        },
+                        {
+                            "0": 271191205,
+                            "1": "ali_root_ls",
+                            "2": "123.113.246.35:52143",
+                            "3": null,
+                            "4": "Query",
+                            "5": 0,
+                            "6": "init",
+                            "7": "SHOW FULL PROCESSLIST"
+                        },
+                        {
+                            "0": 539596021,
+                            "1": "ali_root_ls",
+                            "2": "123.113.253.195:52102",
+                            "3": null,
+                            "4": "Sleep",
+                            "5": 27,
+                            "6": "",
+                            "7": null
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Id",
+                            "field": "0",
+                            "dataType": {
+                                "type": 4
+                            }
+                        },
+                        {
+                            "title": "User",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Host",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "db",
+                            "field": "3",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Command",
+                            "field": "4",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Time",
+                            "field": "5",
+                            "dataType": {
+                                "type": 3
+                            }
+                        },
+                        {
+                            "title": "State",
+                            "field": "6",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Info",
+                            "field": "7",
+                            "dataType": {
+                                "type": 17
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 12 records retrieved in 37.236ms"
+                    },
+                    "totalRowCount": 12,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SHOW FULL PROCESSLIST"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 3,
+                "end": 3,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "95eae118-e186-430a-f7d5-88b4d62be98e"
+                    ]
+                },
+                "currentHeight": 262.39996337890625,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 14
+                        },
+                        "contentStart": 0,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "cb3a1260-7e6b-4a12-a9e2-b3ff4e3ccd20",
+                    "resultId": "95eae118-e186-430a-f7d5-88b4d62be98e",
+                    "rows": [
+                        {
+                            "0": "H2404A"
+                        },
+                        {
+                            "0": "__recycle_bin__"
+                        },
+                        {
+                            "0": "db_test"
+                        },
+                        {
+                            "0": "information_schema"
+                        },
+                        {
+                            "0": "jiyun_H2403A_test"
+                        },
+                        {
+                            "0": "lishuo"
+                        },
+                        {
+                            "0": "mysql"
+                        },
+                        {
+                            "0": "performance_schema"
+                        },
+                        {
+                            "0": "sys"
+                        },
+                        {
+                            "0": "testdb"
+                        },
+                        {
+                            "0": "库里难"
+                        },
+                        {
+                            "0": "李硕_2024_05_16"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Database",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 12 records retrieved in 56.635ms"
+                    },
+                    "totalRowCount": 12,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SHOW DATABASES"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 4,
+                "end": 4,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "8bc04266-4600-4913-a7b8-c3861c8bfe0a",
+                            "content": "OK, 0 records retrieved in 55.89ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 10
+                        },
+                        "contentStart": 0,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 5,
+                "end": 5,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "75687afc-a2e4-4402-9c43-b13b7ed2cedf"
+                    ]
+                },
+                "currentHeight": 137.5999755859375,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 11
+                        },
+                        "contentStart": 0,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "cb3a1260-7e6b-4a12-a9e2-b3ff4e3ccd20",
+                    "resultId": "75687afc-a2e4-4402-9c43-b13b7ed2cedf",
+                    "rows": [
+                        {
+                            "0": "demo1"
+                        },
+                        {
+                            "0": "demo2"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Tables_in_H2404A",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 2 records retrieved in 54.961ms"
+                    },
+                    "totalRowCount": 2,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SHOW TABLES"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 6,
+                "end": 13,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "8e3e2667-7087-4b1d-af19-6ed31cf77296",
+                            "content": "OK, 0 records retrieved in 66.742ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 188
+                        },
+                        "contentStart": 6,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 188,
+                            "length": 1
+                        },
+                        "contentStart": 187,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 14,
+                "end": 14,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "e07321a4-4688-4e3a-d3cc-c432e10c77b7"
+                    ]
+                },
+                "currentHeight": 219.19998168945312,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 10
+                        },
+                        "contentStart": 1,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 10,
+                            "length": 8
+                        },
+                        "contentStart": 10,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "cb3a1260-7e6b-4a12-a9e2-b3ff4e3ccd20",
+                    "resultId": "e07321a4-4688-4e3a-d3cc-c432e10c77b7",
+                    "rows": [
+                        {
+                            "0": "id",
+                            "1": "tinyint",
+                            "2": "NO",
+                            "3": "PRI",
+                            "4": null,
+                            "5": "auto_increment"
+                        },
+                        {
+                            "0": "name",
+                            "1": "varchar(5)",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "price",
+                            "1": "decimal(5,2)",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "count",
+                            "1": "tinyint",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "pub_data",
+                            "1": "date",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Field",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Type",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Null",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Key",
+                            "field": "3",
+                            "dataType": {
+                                "type": 46
+                            }
+                        },
+                        {
+                            "title": "Default",
+                            "field": "4",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Extra",
+                            "field": "5",
+                            "dataType": {
+                                "type": 17
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 5 records retrieved in 60.663ms"
+                    },
+                    "totalRowCount": 5,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "DESC book"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 15,
+                "end": 20,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "466af679-821e-43fc-e8ff-53f8a2bc5d73",
+                            "content": "OK, 5 rows affected in 521.764ms"
+                        }
+                    ]
+                },
+                "currentHeight": 32.79998779296875,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 201
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 201,
+                            "length": 7
+                        },
+                        "contentStart": 201,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 21,
+                "end": 21,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "64fc77aa-dbd4-40d1-cc78-58b22580125f"
+                    ]
+                },
+                "currentHeight": 224.00003051757812,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 19
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 19,
+                            "length": 11
+                        },
+                        "contentStart": 19,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "cb3a1260-7e6b-4a12-a9e2-b3ff4e3ccd20",
+                    "resultId": "64fc77aa-dbd4-40d1-cc78-58b22580125f",
+                    "rows": [
+                        {
+                            "0": 1,
+                            "1": "三国演义",
+                            "2": "35.50",
+                            "3": 10,
+                            "4": "2001-06-06"
+                        },
+                        {
+                            "0": 2,
+                            "1": "红楼梦",
+                            "2": "16.80",
+                            "3": 10,
+                            "4": "2007-08-19"
+                        },
+                        {
+                            "0": 3,
+                            "1": "西游记",
+                            "2": "27.47",
+                            "3": 20,
+                            "4": "2010-10-16"
+                        },
+                        {
+                            "0": 4,
+                            "1": "水浒传",
+                            "2": "166.00",
+                            "3": 25,
+                            "4": "2023-07-25"
+                        },
+                        {
+                            "0": 5,
+                            "1": "青铜葵花",
+                            "2": "56.80",
+                            "3": 15,
+                            "4": "2024-12-23"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "id",
+                            "field": "0",
+                            "dataType": {
+                                "type": 1
+                            }
+                        },
+                        {
+                            "title": "name",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "price",
+                            "field": "2",
+                            "dataType": {
+                                "type": 10
+                            }
+                        },
+                        {
+                            "title": "count",
+                            "field": "3",
+                            "dataType": {
+                                "type": 1
+                            }
+                        },
+                        {
+                            "title": "pub_data",
+                            "field": "4",
+                            "dataType": {
+                                "type": 28
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 5 records retrieved in 58.96ms"
+                    },
+                    "totalRowCount": 5,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT * FROM book"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 22,
+                "end": 24,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "25e68787-8c74-494e-d299-78e88331b513",
+                            "content": "OK, 1 row affected in 47.541ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 42
+                        },
+                        "contentStart": 21,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 25,
+                "end": 25,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "1074d5b0-91e9-43ec-e039-d7d67a768c4e"
+                    ]
+                },
+                "currentHeight": 408.0000305175781,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 14
+                        },
+                        "contentStart": 0,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "cb3a1260-7e6b-4a12-a9e2-b3ff4e3ccd20",
+                    "resultId": "1074d5b0-91e9-43ec-e039-d7d67a768c4e",
+                    "rows": [
+                        {
+                            "0": "H2404A"
+                        },
+                        {
+                            "0": "__recycle_bin__"
+                        },
+                        {
+                            "0": "db_test"
+                        },
+                        {
+                            "0": "information_schema"
+                        },
+                        {
+                            "0": "jiyun_H2403A_test"
+                        },
+                        {
+                            "0": "lishuo"
+                        },
+                        {
+                            "0": "mysql"
+                        },
+                        {
+                            "0": "performance_schema"
+                        },
+                        {
+                            "0": "sys"
+                        },
+                        {
+                            "0": "testdb"
+                        },
+                        {
+                            "0": "ziji"
+                        },
+                        {
+                            "0": "库里难"
+                        },
+                        {
+                            "0": "李硕_2024_05_16"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Database",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 13 records retrieved in 42.416ms"
+                    },
+                    "totalRowCount": 13,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SHOW DATABASES"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 26,
+                "end": 26,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "3f740e36-7050-46dd-a556-ee89ebcab8a3",
+                            "content": "OK, 0 records retrieved in 141.355ms"
+                        }
+                    ]
+                },
+                "currentHeight": 31.1875,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 9
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 9,
+                            "length": 11
+                        },
+                        "contentStart": 9,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 27,
+                "end": 33,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "9d6b567b-d1f3-4cef-e1d4-9c2466cbf492",
+                            "content": "OK, 0 records retrieved in 66.265ms"
+                        },
+                        {
+                            "type": 4,
+                            "index": 1,
+                            "resultId": "013f658c-cef0-4e7a-f482-c01a79850d38",
+                            "content": "OK, 0 records retrieved in 61.908ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 206
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 206,
+                            "length": 12
+                        },
+                        "contentStart": 206,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 34,
+                "end": 34,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "4080688f-e32b-413a-e2b9-12632550687f"
+                    ]
+                },
+                "currentHeight": 229.59999084472656,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 10
+                        },
+                        "contentStart": 1,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 10,
+                            "length": 7
+                        },
+                        "contentStart": 10,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "cb3a1260-7e6b-4a12-a9e2-b3ff4e3ccd20",
+                    "resultId": "4080688f-e32b-413a-e2b9-12632550687f",
+                    "rows": [
+                        {
+                            "0": "id",
+                            "1": "tinyint",
+                            "2": "NO",
+                            "3": "PRI",
+                            "4": null,
+                            "5": "auto_increment"
+                        },
+                        {
+                            "0": "name",
+                            "1": "varchar(10)",
+                            "2": "YES",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "gender",
+                            "1": "enum('男','女')",
+                            "2": "YES",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "height",
+                            "1": "decimal(5,2)",
+                            "2": "YES",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "birthday",
+                            "1": "date",
+                            "2": "YES",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Field",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Type",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Null",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Key",
+                            "field": "3",
+                            "dataType": {
+                                "type": 46
+                            }
+                        },
+                        {
+                            "title": "Default",
+                            "field": "4",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Extra",
+                            "field": "5",
+                            "dataType": {
+                                "type": 17
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 5 records retrieved in 59.355ms"
+                    },
+                    "totalRowCount": 5,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "DESC user"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 35,
+                "end": 39,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "2df6add5-0a38-4cee-f376-5b16cb492855",
+                            "content": "OK, 4 rows affected in 87.612ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 184
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 40,
+                "end": 40,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "418126f8-a03c-4f83-ef2c-a9b8dd56a21e"
+                    ]
+                },
+                "currentHeight": 195.20001220703125,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 19
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 19,
+                            "length": 11
+                        },
+                        "contentStart": 19,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "cb3a1260-7e6b-4a12-a9e2-b3ff4e3ccd20",
+                    "resultId": "418126f8-a03c-4f83-ef2c-a9b8dd56a21e",
+                    "rows": [
+                        {
+                            "0": 1,
+                            "1": "张三",
+                            "2": "男",
+                            "3": "178.56",
+                            "4": "1998-01-02"
+                        },
+                        {
+                            "0": 2,
+                            "1": "李四",
+                            "2": "女",
+                            "3": "156.24",
+                            "4": "1997-03-19"
+                        },
+                        {
+                            "0": 3,
+                            "1": "王五",
+                            "2": "男",
+                            "3": "182.36",
+                            "4": "1998-11-13"
+                        },
+                        {
+                            "0": 4,
+                            "1": "赵六",
+                            "2": "女",
+                            "3": "163.55",
+                            "4": "1998-12-28"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "id",
+                            "field": "0",
+                            "dataType": {
+                                "type": 1
+                            }
+                        },
+                        {
+                            "title": "name",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "gender",
+                            "field": "2",
+                            "dataType": {
+                                "type": 46
+                            }
+                        },
+                        {
+                            "title": "height",
+                            "field": "3",
+                            "dataType": {
+                                "type": 10
+                            }
+                        },
+                        {
+                            "title": "birthday",
+                            "field": "4",
+                            "dataType": {
+                                "type": 28
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 4 records retrieved in 15.853ms"
+                    },
+                    "totalRowCount": 4,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT * FROM user"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 41,
+                "end": 42,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "97d52b21-dba7-41f0-c4d2-d002e5cf09f1",
+                            "content": "OK, 1 row affected in 35.972ms"
+                        },
+                        {
+                            "type": 4,
+                            "index": 1,
+                            "resultId": "056aade2-3012-40c7-c742-c33c2f95896c",
+                            "content": "OK, 0 records retrieved in 47.259ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 44
+                        },
+                        "contentStart": 6,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 44,
+                            "length": 14
+                        },
+                        "contentStart": 44,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 43,
+                "end": 43,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "f362d4a6-5d55-4532-f62e-97fa1c13742e",
+                            "content": "OK, 0 records retrieved in 51.27ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 13
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 13,
+                            "length": 10
+                        },
+                        "contentStart": 13,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 44,
+                "end": 50,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "60dcdf69-aaaa-4a1d-f984-494d94f71fb5",
+                            "content": "OK, 0 records retrieved in 52.801ms"
+                        },
+                        {
+                            "type": 4,
+                            "index": 1,
+                            "resultId": "63a9c57c-ff40-46de-90c4-556adf862394",
+                            "content": "OK, 0 records retrieved in 56.308ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 182
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 182,
+                            "length": 12
+                        },
+                        "contentStart": 182,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 51,
+                "end": 51,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "48961ff4-fa7f-4a25-e22f-688ee59d68d8"
+                    ]
+                },
+                "currentHeight": 222.39999389648438,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 9
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 9,
+                            "length": 0
+                        },
+                        "contentStart": 8,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "cb3a1260-7e6b-4a12-a9e2-b3ff4e3ccd20",
+                    "resultId": "48961ff4-fa7f-4a25-e22f-688ee59d68d8",
+                    "rows": [
+                        {
+                            "0": "Uid",
+                            "1": "tinyint",
+                            "2": "NO",
+                            "3": "PRI",
+                            "4": null,
+                            "5": "auto_increment"
+                        },
+                        {
+                            "0": "Uname",
+                            "1": "varchar(5)",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "Usal",
+                            "1": "decimal(7,2)",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "Uhiredate",
+                            "1": "date",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "Upid",
+                            "1": "tinyint",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Field",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Type",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Null",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Key",
+                            "field": "3",
+                            "dataType": {
+                                "type": 46
+                            }
+                        },
+                        {
+                            "title": "Default",
+                            "field": "4",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Extra",
+                            "field": "5",
+                            "dataType": {
+                                "type": 17
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 5 records retrieved in 42.184ms"
+                    },
+                    "totalRowCount": 5,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "DESC stu"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 52,
+                "end": 60,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 0,
+                            "index": 0,
+                            "content": "MySQL Error (1264): ClassicSession.run_sql: Out of range value for column 'Uid' at row 1",
+                            "language": "ansi"
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": ""
+                    }
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 337
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 61,
+                "end": 61,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "77eb329f-b0d1-4991-b953-254414074ff4",
+                            "content": "OK, 0 records retrieved in 25.671ms"
+                        }
+                    ]
+                },
+                "currentHeight": 39.199981689453125,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 51
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 51,
+                            "length": 1
+                        },
+                        "contentStart": 50,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 62,
+                "end": 62,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "59ea8a0c-e2e6-421a-e4b2-d1be985b0fae"
+                    ]
+                },
+                "currentHeight": 229.5999755859375,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 9
+                        },
+                        "contentStart": 0,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "cb3a1260-7e6b-4a12-a9e2-b3ff4e3ccd20",
+                    "resultId": "59ea8a0c-e2e6-421a-e4b2-d1be985b0fae",
+                    "rows": [
+                        {
+                            "0": "Uid",
+                            "1": "smallint",
+                            "2": "NO",
+                            "3": "PRI",
+                            "4": null,
+                            "5": "auto_increment"
+                        },
+                        {
+                            "0": "Uname",
+                            "1": "varchar(5)",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "Usal",
+                            "1": "decimal(7,2)",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "Uhiredate",
+                            "1": "date",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "Upid",
+                            "1": "tinyint",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Field",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Type",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Null",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Key",
+                            "field": "3",
+                            "dataType": {
+                                "type": 46
+                            }
+                        },
+                        {
+                            "title": "Default",
+                            "field": "4",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Extra",
+                            "field": "5",
+                            "dataType": {
+                                "type": 17
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 5 records retrieved in 38.409ms"
+                    },
+                    "totalRowCount": 5,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "DESC stu"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 63,
+                "end": 71,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "27a336ed-f17c-45de-fd39-3eab2f63c140",
+                            "content": "OK, 8 rows affected in 31.95ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 337
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 72,
+                "end": 72,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "2be32d61-2644-47d0-a8bb-b1d056e5f37b"
+                    ]
+                },
+                "currentHeight": 250.4000244140625,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 18
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 18,
+                            "length": 11
+                        },
+                        "contentStart": 18,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "cb3a1260-7e6b-4a12-a9e2-b3ff4e3ccd20",
+                    "resultId": "2be32d61-2644-47d0-a8bb-b1d056e5f37b",
+                    "rows": [
+                        {
+                            "0": 1001,
+                            "1": "李玉兰",
+                            "2": "12500.00",
+                            "3": "2017-09-18",
+                            "4": 40
+                        },
+                        {
+                            "0": 1002,
+                            "1": "翠花",
+                            "2": "10000.00",
+                            "3": "2016-12-21",
+                            "4": 20
+                        },
+                        {
+                            "0": 1003,
+                            "1": "张三疯",
+                            "2": "35000.00",
+                            "3": "2014-10-21",
+                            "4": 10
+                        },
+                        {
+                            "0": 1004,
+                            "1": "展昭",
+                            "2": "20040.00",
+                            "3": "2018-01-22",
+                            "4": 10
+                        },
+                        {
+                            "0": 1005,
+                            "1": "李有才",
+                            "2": "9000.00",
+                            "3": "2017-11-04",
+                            "4": 20
+                        },
+                        {
+                            "0": 1006,
+                            "1": "张大民",
+                            "2": "8850.00",
+                            "3": "2018-01-16",
+                            "4": 40
+                        },
+                        {
+                            "0": 1007,
+                            "1": "乔丹",
+                            "2": "12500.00",
+                            "3": "2018-01-22",
+                            "4": 50
+                        },
+                        {
+                            "0": 1008,
+                            "1": "詹姆斯",
+                            "2": "30500.00",
+                            "3": "2018-08-21",
+                            "4": 20
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Uid",
+                            "field": "0",
+                            "dataType": {
+                                "type": 2
+                            }
+                        },
+                        {
+                            "title": "Uname",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Usal",
+                            "field": "2",
+                            "dataType": {
+                                "type": 10
+                            }
+                        },
+                        {
+                            "title": "Uhiredate",
+                            "field": "3",
+                            "dataType": {
+                                "type": 28
+                            }
+                        },
+                        {
+                            "title": "Upid",
+                            "field": "4",
+                            "dataType": {
+                                "type": 1
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 8 records retrieved in 52.794ms"
+                    },
+                    "totalRowCount": 8,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT * FROM stu"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 73,
+                "end": 80,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "9eb6bf44-4330-474e-e6c6-77e9eedcab3a",
+                            "content": "OK, 0 records retrieved in 25.63ms"
+                        },
+                        {
+                            "type": 4,
+                            "index": 1,
+                            "resultId": "ab79dfcf-3e6e-4c0b-e6f7-2c55b3aa1a27",
+                            "content": "OK, 0 records retrieved in 10.72ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 189
+                        },
+                        "contentStart": 6,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 189,
+                            "length": 24
+                        },
+                        "contentStart": 189,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 81,
+                "end": 81,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "35fe1db2-f008-4993-e227-4d40e0be8a0c"
+                    ]
+                },
+                "currentHeight": 239.99993896484375,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 13
+                        },
+                        "contentStart": 1,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 13,
+                            "length": 0
+                        },
+                        "contentStart": 12,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "cb3a1260-7e6b-4a12-a9e2-b3ff4e3ccd20",
+                    "resultId": "35fe1db2-f008-4993-e227-4d40e0be8a0c",
+                    "rows": [
+                        {
+                            "0": "id",
+                            "1": "tinyint",
+                            "2": "NO",
+                            "3": "PRI",
+                            "4": null,
+                            "5": "auto_increment"
+                        },
+                        {
+                            "0": "name",
+                            "1": "varchar(5)",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "age",
+                            "1": "tinyint",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "sex",
+                            "1": "enum('男','女')",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "scid",
+                            "1": "smallint",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Field",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Type",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Null",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Key",
+                            "field": "3",
+                            "dataType": {
+                                "type": 46
+                            }
+                        },
+                        {
+                            "title": "Default",
+                            "field": "4",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Extra",
+                            "field": "5",
+                            "dataType": {
+                                "type": 17
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 5 records retrieved in 19.899ms"
+                    },
+                    "totalRowCount": 5,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "DESC student"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 82,
+                "end": 88,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "8401f1fb-adc4-4dcc-e539-7693d4785156",
+                            "content": "OK, 6 rows affected in 13.81ms"
+                        }
+                    ]
+                },
+                "currentHeight": 28,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 181
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 181,
+                            "length": 9
+                        },
+                        "contentStart": 181,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 89,
+                "end": 89,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "4eb09219-eb20-42cb-b05f-7ce7c14d6152"
+                    ]
+                },
+                "currentHeight": 261.6000061035156,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 22
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 22,
+                            "length": 11
+                        },
+                        "contentStart": 22,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "cb3a1260-7e6b-4a12-a9e2-b3ff4e3ccd20",
+                    "resultId": "4eb09219-eb20-42cb-b05f-7ce7c14d6152",
+                    "rows": [
+                        {
+                            "0": 1,
+                            "1": "付林泽",
+                            "2": 18,
+                            "3": "男",
+                            "4": 101
+                        },
+                        {
+                            "0": 2,
+                            "1": "田世旋",
+                            "2": 18,
+                            "3": "男",
+                            "4": 101
+                        },
+                        {
+                            "0": 3,
+                            "1": "刘佳美",
+                            "2": 17,
+                            "3": "女",
+                            "4": 101
+                        },
+                        {
+                            "0": 4,
+                            "1": "朱旭东",
+                            "2": 19,
+                            "3": "男",
+                            "4": 102
+                        },
+                        {
+                            "0": 5,
+                            "1": "孙晓虎",
+                            "2": 20,
+                            "3": "男",
+                            "4": 102
+                        },
+                        {
+                            "0": 6,
+                            "1": "狄超",
+                            "2": 16,
+                            "3": "男",
+                            "4": 102
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "id",
+                            "field": "0",
+                            "dataType": {
+                                "type": 1
+                            }
+                        },
+                        {
+                            "title": "name",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "age",
+                            "field": "2",
+                            "dataType": {
+                                "type": 1
+                            }
+                        },
+                        {
+                            "title": "sex",
+                            "field": "3",
+                            "dataType": {
+                                "type": 46
+                            }
+                        },
+                        {
+                            "title": "scid",
+                            "field": "4",
+                            "dataType": {
+                                "type": 2
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 6 records retrieved in 10.918ms"
+                    },
+                    "totalRowCount": 6,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT * FROM student"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 90,
+                "end": 98,
+                "language": "mysql",
+                "result": {
+                    "type": "text",
+                    "text": [
+                        {
+                            "type": 4,
+                            "index": 0,
+                            "resultId": "bd6853bc-6eba-4408-ab95-69f267ac87e0",
+                            "content": "OK, 0 records retrieved in 34.969ms"
+                        },
+                        {
+                            "type": 4,
+                            "index": 1,
+                            "resultId": "bac84207-b334-4eed-8e62-c9c770a98af6",
+                            "content": "OK, 0 records retrieved in 17.026ms"
+                        }
+                    ]
+                },
+                "currentHeight": 54.390625,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 221
+                        },
+                        "contentStart": 6,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 221,
+                            "length": 14
+                        },
+                        "contentStart": 221,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 99,
+                "end": 99,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "057d5586-d748-4d6e-a327-17b44f571161"
+                    ]
+                },
+                "currentHeight": 248.9375,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 8
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 8,
+                            "length": 8
+                        },
+                        "contentStart": 8,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "cb3a1260-7e6b-4a12-a9e2-b3ff4e3ccd20",
+                    "resultId": "057d5586-d748-4d6e-a327-17b44f571161",
+                    "rows": [
+                        {
+                            "0": "id",
+                            "1": "tinyint",
+                            "2": "NO",
+                            "3": "PRI",
+                            "4": null,
+                            "5": "auto_increment"
+                        },
+                        {
+                            "0": "Sname",
+                            "1": "varchar(20)",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "Score",
+                            "1": "decimal(4,2)",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "Age",
+                            "1": "tinyint",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "Gender",
+                            "1": "enum('男','女')",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        },
+                        {
+                            "0": "birthday",
+                            "1": "date",
+                            "2": "NO",
+                            "3": "",
+                            "4": null,
+                            "5": ""
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Field",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Type",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Null",
+                            "field": "2",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Key",
+                            "field": "3",
+                            "dataType": {
+                                "type": 46
+                            }
+                        },
+                        {
+                            "title": "Default",
+                            "field": "4",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Extra",
+                            "field": "5",
+                            "dataType": {
+                                "type": 17
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 6 records retrieved in 16.453ms"
+                    },
+                    "totalRowCount": 6,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "DESC 李硕"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 100,
+                "end": 105,
+                "language": "mysql",
+                "currentHeight": 180,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 229
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 229,
+                            "length": 7
+                        },
+                        "contentStart": 229,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": []
+        },
+        {
+            "state": {
+                "start": 106,
+                "end": 106,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "22b12c89-6051-4ffe-f160-a0db5fa96696"
+                    ]
+                },
+                "currentHeight": 219.199951171875,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 17
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 17,
+                            "length": 11
+                        },
+                        "contentStart": 17,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "cb3a1260-7e6b-4a12-a9e2-b3ff4e3ccd20",
+                    "resultId": "22b12c89-6051-4ffe-f160-a0db5fa96696",
+                    "rows": [
+                        {
+                            "0": 1,
+                            "1": "黑小熊",
+                            "2": "56.98",
+                            "3": 18,
+                            "4": "男",
+                            "5": "2005-06-03"
+                        },
+                        {
+                            "0": 2,
+                            "1": "大白",
+                            "2": "99.99",
+                            "3": 16,
+                            "4": "女",
+                            "5": "2007-07-19"
+                        },
+                        {
+                            "0": 3,
+                            "1": "蓝多多",
+                            "2": "23.45",
+                            "3": 23,
+                            "4": "女",
+                            "5": "2000-09-16"
+                        },
+                        {
+                            "0": 4,
+                            "1": "老红",
+                            "2": "45.00",
+                            "3": 24,
+                            "4": "男",
+                            "5": "1999-11-09"
+                        },
+                        {
+                            "0": 5,
+                            "1": "小老刘",
+                            "2": "68.00",
+                            "3": 15,
+                            "4": "男",
+                            "5": "2008-02-27"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "id",
+                            "field": "0",
+                            "dataType": {
+                                "type": 1
+                            }
+                        },
+                        {
+                            "title": "Sname",
+                            "field": "1",
+                            "dataType": {
+                                "type": 17
+                            }
+                        },
+                        {
+                            "title": "Score",
+                            "field": "2",
+                            "dataType": {
+                                "type": 10
+                            }
+                        },
+                        {
+                            "title": "Age",
+                            "field": "3",
+                            "dataType": {
+                                "type": 1
+                            }
+                        },
+                        {
+                            "title": "Gender",
+                            "field": "4",
+                            "dataType": {
+                                "type": 46
+                            }
+                        },
+                        {
+                            "title": "birthday",
+                            "field": "5",
+                            "dataType": {
+                                "type": 28
+                            }
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 5 records retrieved in 28.148ms"
+                    },
+                    "totalRowCount": 5,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "SELECT * FROM 李硕"
+                }
+            ]
+        },
+        {
+            "state": {
+                "start": 107,
+                "end": 107,
+                "language": "mysql",
+                "currentHeight": 180,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 0
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    }
+                ]
+            },
+            "data": []
+        }
+    ]
+}
