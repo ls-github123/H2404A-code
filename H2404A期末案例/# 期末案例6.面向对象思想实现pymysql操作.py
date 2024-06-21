@@ -41,48 +41,48 @@ class Database:
             
 data = Database()
 
-# sql1 = """
-# -- 1.创建表class
-# CREATE TABLE class(
-#     cid TINYINT PRIMARY KEY AUTO_INCREMENT,
-#     cname CHAR(3) NOT NULL
-# );
-# """
-# data.excute_sql(sql1)
+sql1 = """
+-- 1.创建表class
+CREATE TABLE class(
+    cid TINYINT PRIMARY KEY AUTO_INCREMENT,
+    cname CHAR(3) NOT NULL
+);
+"""
+data.excute_sql(sql1)
 
-# sql2 = """
-# -- 2.向表class添加中数据
-# INSERT INTO class VALUES
-# (1, '三一班'),
-# (0, '三二班'),
-# (0, '三三班');
-# """
-# data.excute_sql(sql2)
+sql2 = """
+-- 2.向表class添加中数据
+INSERT INTO class VALUES
+(1, '三一班'),
+(0, '三二班'),
+(0, '三三班');
+"""
+data.excute_sql(sql2)
 
-# sql3 = """
-# -- 3.创建表student
-# CREATE TABLE student(
-#     stuid INT PRIMARY KEY AUTO_INCREMENT,
-#     sname VARCHAR(5) NOT NULL,
-#     sage TINYINT NOT NULL,
-#     gender ENUM('男', '女') DEFAULT '男' NOT NULL,
-#     score DECIMAL(3,0) NOT NULL,
-#     c_id TINYINT NOT NULL,
-#     FOREIGN KEY(c_id) REFERENCES class(cid)
-# );
-# """
-# data.excute_sql(sql3)
+sql3 = """
+-- 3.创建表student
+CREATE TABLE student(
+    stuid INT PRIMARY KEY AUTO_INCREMENT,
+    sname VARCHAR(5) NOT NULL,
+    sage TINYINT NOT NULL,
+    gender ENUM('男', '女') DEFAULT '男' NOT NULL,
+    score DECIMAL(3,0) NOT NULL,
+    c_id TINYINT NOT NULL,
+    FOREIGN KEY(c_id) REFERENCES class(cid)
+);
+"""
+data.excute_sql(sql3)
 
-# sql4 = """
-# INSERT INTO student VALUES
-# (1, '张三', 15, '男', 90, 2),
-# (0, '王丽丽', 18, '女', 85, 2),
-# (0, '李萌萌', 15, '女', 100, 1),
-# (0, '曹操', 20, '男', 95, 3),
-# (0, '刘贝贝', 15, '女', 85, 2),
-# (0, '李芳芳', 16, '女', 100, 3);
-# """
-# data.excute_sql(sql4)
+sql4 = """
+INSERT INTO student VALUES
+(1, '张三', 15, '男', 90, 2),
+(0, '王丽丽', 18, '女', 85, 2),
+(0, '李萌萌', 15, '女', 100, 1),
+(0, '曹操', 20, '男', 95, 3),
+(0, '刘贝贝', 15, '女', 85, 2),
+(0, '李芳芳', 16, '女', 100, 3);
+"""
+data.excute_sql(sql4)
 
 sql5 = """
 SELECT c.cname, s.* FROM student AS s INNER JOIN class AS c ON s.c_id = c.cid WHERE s.sname LIKE '__'; 
