@@ -29,15 +29,15 @@ class Database:
             print(f'非查询指令{sql}执行失败,数据回滚!')
     
     def select_sql(self, sql): # sql查询语句,返回查询数据
-        SelectLits = []
+        SelectList = [] # 定义一个空列表，存放查询返回的数据
         try:
             self.c1。execute(sql)
             self.con。commit()
             print(f'查询指令({sql})执行成功,提交数据库')
             results = self.c1。fetchall() # 返回查询到的全部数据
             for result in results:
-                SelectLits.append(result) # 将回传的数据依次存入列表
-            return SelectLits
+                SelectList.append(result) # 将回传的数据依次存入列表
+            return SelectList # 输出列表数据
         except Exception as e:
             print(f'错误(Error):{e}')
             self.con。rollback()
