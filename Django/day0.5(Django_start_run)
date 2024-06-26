@@ -1,0 +1,10 @@
+框架:代码的封装
+安装: pip install django(表示安装最新版本)
+pip install django == 版本号(5.0.6)
+
+卸载: pip uninstall django
+
+django项目的创建:
+    django-admin startproject 项目名
+    1.终端中cd进入到项目目录下(django01)
+    2.启动服务:python manage.py runserver
