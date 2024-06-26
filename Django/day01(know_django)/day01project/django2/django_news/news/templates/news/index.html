@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{data.title}}</title>
+    </head>
+<body>
+    <h1>{{data.title}}</h1>
+    <p>{{data.description}}</p>
+    <p><strong>Author:</strong>{{data.author}}</p>
+
+    <h2>News List</h2>
+    <ul>
+        {% for News in News_list %}
+        <li>{{ News }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
