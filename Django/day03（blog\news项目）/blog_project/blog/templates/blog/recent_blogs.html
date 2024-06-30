@@ -1,0 +1,21 @@
+<!-- blog/templates/blog/recent_blogs.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recent Blogs</title>
+</head>
+<body>
+    <h1>Recent Blogs of {{ user.username }}</h1>
+    <ul>
+        {% for blog in blogs %}
+            <li>
+                <h2>{{ blog.title }}</h2>
+                <p>{{ blog.content }}</p>
+                <p>Author: {{ blog.author.username }}</p>
+                <p>Published on: {{ blog.published_date }}</p>
+                <a href="{% url 'delete_blog' blog.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
