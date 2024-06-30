@@ -89,7 +89,7 @@ DATABASES = {
         'HOST': '182.92.217.5',
         'PORT': 3306,
         'USER': 'root',
-        'PASSWORD': 'lsecsmysql@000314',
+        'PASSWORD': '',
     }
 }
 
