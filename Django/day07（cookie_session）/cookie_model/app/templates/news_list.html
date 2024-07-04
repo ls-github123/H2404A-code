@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>新闻列表</title>
+</head>
+<body>
+    <h2>新闻列表</h2>
+    <ul>
+        {% csrf_token %}
+        {% for news in news_list %}
+        <li>{{ news.title }}</li>
+        <br>
+        <li>作者:{{news.author}} - 发布时间:{{news.pub_date}}</li>
+        <br>
+        <li>{{news.content}}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
