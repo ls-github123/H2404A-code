@@ -1,0 +1,159 @@
+1、render函数渲染html页面
+1. 在项目的根目录下新建template（随便起）文件夹
+2. 在setting.py中配置template的目录
+在templates配置项中添加配置:'DIRS': [os.path.join(BASE_DIR, 'template')]
+3. 在template新建于子应用同名的目录
+4. 在views文件中使用render函数渲染html
+render(request,"**.html",{模版中变量名:变量名})
+
+2、在html中输出变量
+return render(request,"**.html",{'在html名',views.py变量,{},{}})
+在html中通过{{变量名--刚才起的名字 }} 来展示变量
+3、静态资源配置
+在Django中，静态文件（如CSS、JavaScript、图片等）是网站开发中不可或缺的一部分。为了让网站能够正确加载这些静态文件，我们需要在Django中进行相应的设置。
+参考网址：
+https://segmentfault.com/a/1190000044692232
+1、在项目根目录中新建static目录
+
+2、在setting.py中配置目录
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+4、for标签和if标签
+模版标签 --django扩展的在html中使用的标签 方便我们处理数据用的
+语法：用于循环变量字典列表
+{% for 循环变量 in 发送过来的变量 %}
+	<li>{{ i }}</li>
+{% endfor %}
+在render()函数中如果需要发送的变量比较多 可以使用locals()函数
+def list(request):
+    #return HttpResponse("diyi")
+    book_list1 = [
+        {"id": 11, "name": "python基础入门", "price": 130.00},
+        {"id": 17, "name": "Go基础入门", "price": 230.00},
+        {"id": 23, "name": "PHP基础入门", "price": 330.00},
+        {"id": 44, "name": "Java基础入门", "price": 730.00},
+        {"id": 51, "name": "C++基础入门", "price": 300.00},
+        {"id": 56, "name": "C#基础入门", "price": 100.00},
+        {"id": 57, "name": "前段基础入门", "price": 380.00},
+    ]
+    return render(request,'blog/list.html',locals())
+if标签：
+{% if 条件 %}
+情况一
+{% else %}
+情况而
+{% end %}
+
+<table>
+  <tr>
+    <td>图书名称</td>
+    <td>图书价格</td>
+    <td>评价</td>
+  </tr>
+  {%  for item in book_list1 %}
+
+  <tr>
+    <td>{{ item.name }}</td>
+    <td>{{ item.price }}</td>
+    <td>{% if item.price > 300 %} 贵 {% else %} 不贵{% endif %}</td>
+  </tr>
+  {% endfor %}
+</table>
+5、配置Django连接mysql
+在setting.py中配置database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '数据库名',
+        'USER': '用户名',
+        'PASSWORD': '密码',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+6、ORM
+ORM(object relational mapping) 对象关系映射
+
+ORM映射关系，是django与数据库之间的一个桥梁，可以使开发者不再关注如何去编写SQL语句，直接通过一套ORM所提供的API接口即可方便对各种数据库进行交互
+
+有了以上内容的修饰，现在感觉还是缺少一些什么，我们在视图函数中为前端页面返回的是一个提前定义好的变量，这显然在真正开发中是很少出现的，我们的数据应该是大都来自于数据库中的，那么现在需要我们在项目中加入数据库，并且在视图函数中通过对数据库的访问来拿到数据
+7、模型文件的创建
+子应用/models.py
+from django.db import models
+
+# Create your models here.
+class Blog(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        db_table="blog"
+        verbose_name="blog"
+    def __str__(self):
+        return self.title
+8、生成迁移文件
+接下来通过manage.py命令行管理工具提供的两条，创建我们所需要的数据
+python manage.py makemigrations  #生成迁移文件
+python manage.py migrate #执行迁移
+9、配置admin 管理表中的数据
+admin控制台是 django 为我们提供的一个非常便捷的用来管理数据库的界面
+在主路由文件下，其实你已经看到了它对应的路由设置：path('admin/', admin.site.urls)
+配置步骤：
+1. 创建超级用户
+
+2. 输入http://127.0.0.1:8000/admin看到界面
+
+3. 输入刚才设置的用户名和密码 进入页面
+
+4. 配置应用中模型表信息
+在应用下的admin.py来注册模型表信息
+from django.contrib import admin
+from blog import models
+admin.site.register(models.Blog)
+
+10、将blog表中的信息显示在页面上
+1. 在应用/views.py下新建方法
+from blog import models 将模型信息导入到views中
+2. list=blog.models.Blog.objects.all() 获取表中所有的信息
+3. 渲染到页面上
+
+11、串烧
+1. 新建应用（模块）
+2. 挂在应用 setting.py 找INSTALLED_APPS
+3. 在应用的views中写个方法
+4. 创建urls 在urls中配置views中的方法
+5. 在项目的urls中配置应用的路径
+6. 到此就可以访问到刚才应用中定义的方法了  启动项目  python manage.py runserver
+127.0.0.1:8000/应用的配置路径（项目的urls配置）/应用的方法（应用的urls中配置的）
+7. 新建template文件夹 存储html
+8. 在setting.py中配置template的路径
+9. 在应用的views方法中通过return render函数显示想要的html
+10. 通过django给我们提供的for 和if标签处理从views方法中发送给html的数据
+
+12、作业
+1. 1.创建django项目，创建对应Django视图函数代码，包含对学生模型的查视图，通过浏览器发送GET请求访问对应视图）。
+（1） 创建django项目        
+（2） 创建对应模型类
+（3） 编写增查视图函数（新增、查询）
+（4） 访问对应视图，完成对学生数据的增查
+
+
+2.创建django项目编写django视图函数，实现从get请求获取orm中查询到的新闻news模型类中数据，并作为模板展示内容，渲染到页面上。
+(1)    创建对应新闻模型类，至少包含5个属性：标题、作者.....
+(2)    请正确选择数据类型和约束条件
+(3)    创建对应视图函数
+(4)    通过管理后台任意添加10条数据
+(5)    访问视图函数，通过ORM查询所有新闻数据，渲染到页面上。
+
+
+背诵：
+1.简述Django模板的作用是什么？
+Django模板是Django Web框架中用于动态生成HTML页面的工具。它允许开发者将Python代码与HTML标记结合，通过模板变量和模板标签来动态地展示数据。这样，开发者可以定义HTML页面的结构，并在运行时通过传递数据来填充页面的内容。
+2.在Django中，如何配置静态文件的路径？请简要说明。
+在Django中，配置静态文件的路径通常需要在项目的settings.py文件中进行。需要定义STATIC_URL，它指定了静态文件在Web服务器上的访问路径。
+
+3.Django ORM是什么？它有什么优点？
+
+Django ORM（对象关系映射）是Django框架提供的一种数据库访问技术。它允许开发者使用Python对象来操作数据库，而不必直接编写SQL查询。ORM将数据库表映射到Python类，将表的行映射到类的实例，将表的列映射到类的属性。这样，开发者可以使用Python语法来执行数据库的增删改查操作，提高了开发效率和代码的可读性。Django ORM的优点包括简化数据库操作、提供数据库独立性（可以在不更改代码的情况下切换不同的后端数据库）以及易于学习和使用
