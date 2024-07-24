@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>学生信息展示页面</title>
+</head>
+<body>
+    
+    <table border="1">
+        <h1>学生信息展示列表</h1>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>所属班级</th>
+            <th>自我介绍</th>
+            <th>添加时间</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.gender }}</td>
+            <td>{{ item.age }}</td>
+            <td>{{ item.class_name }}</td>
+            <td>{{ item.introduce }}</td>
+            <td>{{ item.create_time }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</body>
+</html>
