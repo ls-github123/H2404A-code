@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>教师信息展示</title>
+</head>
+<body>
+    <table border="1">
+        <h1>教师信息展示列表</h1>
+        <form action='' method='GET'>
+            请输入查询关键字:<input type='text' name='select'>
+            按性别过滤:<input type='radio' value='女' name='sex'>女
+            <input type='radio' value='男' name='sex'>男
+            <input type='submit' value='查询'>
+        </form>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>任教科目</th>
+            <th>薪资</th>
+            <th>居住地址</th>
+            <th>入职时间</th>
+            <th>备注信息(选填)</th>
+            <th>数据添加时间</th>
+            <th>数据修改时间</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.id }}</td> <!-- ID -->
+            <td>{{ item.name }}</td> <!-- 姓名 -->
+            <td>{{ item.gender }}</td> <!-- 性别 -->
+            <td>{{ item.age }}</td> <!-- 年龄 -->
+            <td>{{ item.course }}</td> <!-- 任教科目 -->
+            <td>{{ item.salary }}</td> <!-- 薪资 -->
+            <td>{{ item.address }}</td> <!-- 居住地址 -->
+            <td>{{ item.onboarding_time }}</td> <!-- 入职时间 -->
+            <td>{{ item.personal_info }}</td> <!-- 备注信息(选填) -->
+            <td>{{ item.create_time }}</td> <!-- 数据添加时间 -->
+            <td>{{ item.update_time }}</td> <!-- 数据修改时间 -->
+            <td><a href='/teacher/del?id={{ item.id }}'>删除</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <p><a href="/teacher/add">点击添加教师信息</a></p>
+</body>
+</html>

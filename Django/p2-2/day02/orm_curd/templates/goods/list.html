@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>教学武器商品信息展示</title>
+</head>
+<body>
+    <table border="1">
+        <h2>教学武器商品信息展示列表</h2>
+        <form action='' method='GET'>
+            请输入价格查询关键字:<input type='search' name='select'>
+            <input type='submit' value='查询'>
+        </form>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>商品名称</th>
+            <th>商品价格</th>
+            <th>商品数量</th>
+            <th>商品种类</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.id }}</td> <!-- ID -->
+            <td>{{ item.name }}</td> <!-- 商品名称 -->
+            <td>{{ item.price }}</td> <!-- 商品价格 -->
+            <td>{{ item.number }}</td> <!-- 商品数量 -->
+            <td>{{ item.category }}</td> <!-- 商品种类 -->
+            <td><a href='/goods/del?id={{ item.id }}'>删除</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <p><a href="/goods/add">点击添加商品信息</a></p>
+</body>
+</html>
