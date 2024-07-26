@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect
-from . import models
+from 。 import models
 # Create your views here.
 def show(request):
     if 'select' in request.GET or 'sex' in request.GET:
@@ -7,6 +7,9 @@ def show(request):
         sex = request.GET['sex']
         data = models.TeachersInfo.objects.filter(name__contains=select, gender=sex)
         print(data)
+    elif 'select' in request.GET and 'sex' not in request.GET:
+        select = request.GET['select']
+        data = models.TeachersInfo.objects.filter(name__contains=select)
     else:
         data = models.TeachersInfo.objects.all()
     return render(request, 'teacher/list.html', {'data':data})
