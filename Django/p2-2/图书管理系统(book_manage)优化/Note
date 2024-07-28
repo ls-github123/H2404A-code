@@ -1,0 +1,66 @@
+day04
+1、常见的查询
+新建图书模型：必须有应用
+bookname  author  publish  createtime  price num(库存)  sale(销量)  sell(是否上下架) cover（封面）
+1、查询所有标题包含"Python"的书籍。
+ Book.objects.filter(bookname__contains='php')
+2、查询所有作者为"John Doe"的书籍。
+Book.objects.filter(author='小四')
+3、查询所有在2020年之后出版的书籍。
+Book.objects.filter(createtime__gt='2020-1-1')
+4、查询所有价格在20到30之间的书籍。
+Book.objects.filter(price__range=(40,50))
+5、查询所有标题包含"Python"或作者为"John Doe"的书籍。
+Book.objects.filter(Q(bookname__contains='php')|Q(author='小五'))
+6、查询所有标题包含"Python"且价格在20到30之间的书籍。
+Book.objects.filter(bookname__contains='php',price__range=(45,60))
+Book.objects.filter(Q(bookname__contains='php'),Q(price__range=(45,60)))
+Book.objects.filter(Q(bookname__contains='php',price__range=(45,60)))
+7、查询所有不在2020年出版的书籍
+Book.objects.filter(~Q(createtime__contains='2020'))
+Book.objects.exclude(createtime__contains='2020')
+8、查询销量比库存多的数据
+Book.objects.filter(sale__gt=F("num"))
+9、查询库存在10 和20 的
+Book.objects.filter(num__in=[10,20])
+2、常见的获取对象函数总结
+all
+first
+filter
+get
+exclude Book.objects.exclude(字段 操作符 =值) 排除符合条件的数据
+order_by order_by('-字段)降序  升序 order_by('字段‘’)
+Book.objects.all().order_by('-price')
+values
+create()
+update()
+delete()
+3、过滤条件
+filter会自动的调用all方法
+__contains  模糊查询  语法  模型.filter(字段名__contains='关键字')  
+__range 范围 语法  模型.filter(字段名__range=(值1，值2))   
+__in 语法 filter(字段名__in[值1,值2,……])  只要等于列出来的期中一个值就行
+__startswith/__endswidth  startswith和endswith的语法个contains一样  一个是以什么开头 一个是以什么结尾
+lt/lte  __小于  __lte 小于等于  filter(字段__lt=值)  
+gt/gte 大于 大于等于
+4、重新迁移数据
+有时候在编程的过程中如果遇到需要增加字段 我们可以修改模型类。但是修改完模型类需要重新迁移
+要删除子应用（app）/migrations/000*_initial.py文件
+删除数据库中的django_migrations的表 和 自己要操作对应的模型表
+执行生成迁移文件 和 重新迁移
+5、编辑的思路
+设置编辑的超链接  跳转到/student/edit页面上，并且传递当前数据的id
+在这个/student/edit对应的方法中，根据id拿到当前要修改的数据，拿到数据后将数据发送edit.html中展示给用户 
+6、F 函数和q函数
+from django.db.models import Q,F
+F函数用于两个字段之间的比较
+Book.objects.filter(sale__gt=F("num"))
+q函数胡思用于多个条件的罗列 （and or not）
+# And
+filter( Q(属性名__运算符=值) )
+filter(Q(属性名__运算符=值, 属性名__运算符=值, ....))
+# OR
+filter(Q(属性名__运算符=值) | Q(属性名__运算符=值))
+filter(Q(属性名__运算符=值) | Q(属性名__运算符=值) | ....)
+# NOT
+filter(~Q(属性名__运算符=值))
