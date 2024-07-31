@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang='zh-cn'>
+<head>
+    <meta charset="UTF-8">
+    <title>添加商品信息</title>
+</head>
+<body>
+    <h1 align="center">添加商品信息</h1>
+    <div>
+        <table border="1" align="center">
+            <form method="POST">
+                {% csrf_token %}
+                <tr>
+                    <th>商品名称</th>
+                    <td><input type="text" name="goods_name" /></td>
+                </tr>
+
+                <tr>
+                    <th>品牌</th>
+                    <td>
+                        <div align="center">
+                            <label for="goods-brand">请选择所属品牌:</label>
+                        <br>
+                        <select id="goods-brand" name="goods_brand">
+                            {% for item in brand %}
+                            <option value="{{ item.id }}">{{ item.brand_name }}</option>
+                            {% endfor %}
+                        </select>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>商品价格</th>
+                    <td><input type="number" step="0.01" min="0" name="goods_price" /></td>
+                </tr>
+
+                <tr>
+                    <th>库存数量</th>
+                    <td><input type="number" min="0" name="goods_number" /></td>
+                </tr>
+
+                <tr>
+                    <th>商品详情</th>
+                    <td><input type="text" name="goods_info" /></td>
+                </tr>
+
+                <tr>
+                    <th>上架时间</th>
+                    <td><input type="date" name="shelf_time" /></td>
+                </tr>
+
+                <tr>
+                    <th>操作</th>
+                    <td align="center">
+                        <input type="submit" value="保存">
+                        <input type="reset" value="重置">
+                    </td>
+                </tr>
+            </form>
+        </table>
+    </div>
+</body>
+</html>

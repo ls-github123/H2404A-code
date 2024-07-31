@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>商品信息展示</title>
+</head>
+<body>
+    <h1 align='center'>商品信息展示</h1>
+    {% if goods %}
+    <table border="1" align="center">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div align="center">
+            <label for="goods-select">输入商品名称关键字:</label>
+            <input type="search" id='goods-select' name="goods_select">
+            <input type="submit" value="查询">
+            <input type='reset' value='取消'>
+            </div>
+        </form>
+        <p align="center"><a href="/goods/add">添加商品信息</a></p>
+        <br>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>商品名称</th>
+                <th>品牌</th>
+                <th>商品价格</th>
+                <th>库存数量</th>
+                <th>商品详情</th>
+                <th>上架时间</th>
+                <th>数据添加时间</th>
+                <th>数据修改时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for info in goods %}
+            <tr>
+                <td>{{ info.id }}</td> <!--数据库ID-->
+                <td>{{ info.goods_name }}</td> <!--商品名称-->
+                <td>{{ info.goods_brand }}</td> <!--品牌-->
+                <td>{{ info.goods_price }}</td> <!--商品价格-->
+                <td>{{ info.goods_number }}</td> <!--库存数量-->
+                <td>{{ info.goods_info }}</td> <!--商品详情-->
+                <td>{{ info.shelf_time }}</td> <!--上架时间-->
+                <td>{{ info.create_time }}</td> <!--数据添加时间-->
+                <td>{{ info.update_time }}</td> <!--数据修改时间-->
+                <td>
+                    <a href="/goods/edit/{{ info.id }}" target="_blank">编辑</a>
+                    |
+                    <a href="/goods/del/{{ info.id }}" onclick="return confirm('确定要删除该条数据吗？')">删除</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <br>
+        <div><h1 align="center">(未查询到对应数据！)</h1></div>
+    {% endif %}
+</body>
+</html>

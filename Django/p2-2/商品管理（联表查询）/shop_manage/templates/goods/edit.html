@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang='zh-cn'>
+<head>
+    <meta charset="UTF-8">
+    <title>商品信息编辑/{{ goods.goods_name }}</title>
+</head>
+<body>
+    <h1 align="center">商品信息编辑</h1>
+    <div>
+        <table border="1" align="center">
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="goods_id" value="{{ goods.id }}">
+                <tr>
+                    <th>ID</th>
+                    <td>{{goods.id}}</td>
+                </tr>
+
+                <tr>
+                    <th>商品名称</th>
+                    <td><input type="text" name="goods_name" value="{{goods.goods_name}}"></td>
+                </tr>
+
+                <tr>
+                    <th>品牌</th>
+                    <td>
+                        <div align="center">
+                            <label for="goods-brand">请选择所属品牌:</label>
+                        <br>
+                        <select id="goods-brand" name="goods_brand">
+                            {% for brand in brands %}
+                            <option value="{{ brand.id }}">{{ brand.brand_name }}</option>
+                            {% endfor %}
+                        </select>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>商品价格</th>
+                    <td><input type="number" step="0.01" min="0" name="goods_price" value="{{ goods.goods_price }}"></td>
+                </tr>
+
+                <tr>
+                    <th>库存数量</th>
+                    <td><input type="number" min="0" name="goods_number" value="{{ goods.goods_number }}"></td>
+                
+                </tr>
+
+                <tr>
+                    <th>商品详情</th>
+                    <td><input type="text" name="goods_info" value="{{ goods.goods_info }}" /></td>
+                </tr>
+
+                <tr>
+                    <th>上架时间</th>
+                    <!--要在input date 组件中正确输出数据库中的时间数据，需要使用 |date:'Y-m-d'进行格式化-->
+                    <td><input type="date" name="shelf_time" value="{{ goods.shelf_time|date:'Y-m-d' }}" /></td>
+                </tr>
+
+                <tr>
+                    <th>数据添加时间</th>
+                    <td>{{ goods.create_time }}</td>
+                </tr>
+
+                <tr>
+                    <th>数据修改时间(自动更新)</th>
+                    <td>{{ goods.update_time }}</td>
+                </tr>
+
+                <!-- <input type="hidden" name="goods_id" value="{{ goods.id }}"> -->
+                <tr>
+                    <th>操作</th>
+                    <td align="center">
+                        <input type="submit" value="保存">
+                        <input type="reset" value="重置">
+                    </td>
+                </tr>
+            </form>
+        </table>
+    </div>
+</body>
+</html>
