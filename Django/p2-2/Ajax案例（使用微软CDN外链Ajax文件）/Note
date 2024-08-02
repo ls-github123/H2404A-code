@@ -1,0 +1,105 @@
+什么是用户的注册与登录
+用户注册就是将用户信息添加到某个网站中。
+用户登录  输入用户名和密码或者手机号和验证码或者第三方登录 然后进行身份验证  如果登录成功就是提示 **你好
+2、javascript
+javscript是一个轻量级的脚本语言。用来给html添加效果。是由浏览器解析执行
+3、怎么在网页中运行一个js呢
+在网页**.html中添加<script></script>
+在script标签中定义自己的变量 并且操作变量就行
+定义变量  let 变量名=值
+输出变量  console.log(变量名)  网页上 右键  检查  console面板
+4、js的数据类型
+js的数据类型分为两种  基本数据类型和引用数据类型
+基本数据类型  String (字符串)  Number（数字）Boolean(布尔) Null(空) Undefined(未定义) 
+引用数据类型 Object (对象)
+undefined  声明了但是没有赋值
+字符串就是有单引号或者双引号括起来的字符
+5、js的语言控制结构
+js的语言控制结构
+条件语句语法：
+if(条件) {
+    //变量为true的时候执行这里面的代码
+} else if(条件){
+}else{
+}
+
+  for(let i=初始值；i<=10；i++){
+
+}
+​
+6、函数
+7、变量的作用域
+在函数内部可以使用全局变量  局部变量只能在函数内部使用
+8、js操作元素
+给元素绑定事件 onclick
+<标签  onclick="函数()"></标签>
+<button onclick="getname()">点击</button>
+9、渲染元素
+10、ajax
+ajax（async  javascript  and xml）
+ajax异步的请求数据 实现页面的部分更新  
+ajax的原理：
+由客户端页面调用ajax引擎，由ajax引擎请求服务器端，请求成功后服务器将数据返回给ajax引擎，由ajax引擎负责将数据展示到html上。
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+  </head>
+  <body>
+    <button onclick="getdata()">展示数据</button>
+    <table id="list"></table>
+  </body>
+</html>
+
+<script>
+  function getdata(){
+    //什么是ajax 引擎 其实就是是个对象  XMlHttpRequest
+    let obj=new XMLHttpRequest()
+    //通过ajax请求服务器 open(请求方法，url,同步/异步)方法
+    //请求方法 get post  默认是get
+    //url 路径地址
+    //同步（false）异步 true
+    obj.open("get","/user/user",true)
+    //如果发送的请求为get 那么需要调用一个send(null)方法
+    obj.send(null)
+    //请求成功后拿到服务器返回的数据
+    //有两个属性标识着是否请求成功 readystate 请求状态值
+    /*0 未初始化状态：此时，已经创建了一个XMLHttpRequest对象
+1准备发送状态：此时，已经调用了XMLHttpRequest对象的open方法，并且XMLHttpRequest对象已经准备好将一个请求发送到服务器端
+2 已经发送状态：此时，已经通过send方法把一个请求发送到服务器端，但是还没有收到一个响应
+3 正在接收状态：此时，已经接收到HTTP响应头部信息，但是消息体部分还没有完全接收到
+4 完成响应状态：此时，已经完成了HTTP响应的接收
+    * */
+    //当readystate发生改变的时候会触发一个事件 onreadystatechange
+    //status 属性 http响应状态码  200 成功
+    obj.onreadystatechange=function(){
+
+      if(obj.readyState==4&&obj.status==200){
+        //成功---->拿数据 数据存储在responseText这个属性中
+        //从接口中拿到的数据是一个json字符串  所以得将json处理一下 转成对象才能使用
+        let data=JSON.parse(obj.responseText)
+        let userlist=data.data
+        let str="<tr><td>姓名</td><td>年龄</td><td>性别</td></tr>"
+        for(let i=0;i<userlist.length;i++){
+          str+=`<tr><td>${userlist[i].username}</td><td>${userlist[i].age}</td><td>${userlist[i].gender}</td></tr>`
+        }
+        let table=document.querySelector("#list")
+        table.innerHTML=str
+      }
+    }
+  }
+</script>
+接口：
+class User(View):
+    def get(self, request):
+        #拿到所有的数据
+        users = models.Member.objects.all().values()
+        #将字典通过JsonResponse 返回给前端
+        #{status:200,"data":list(users)}
+        return JsonResponse({"status":200,"data":list(users)})
+
