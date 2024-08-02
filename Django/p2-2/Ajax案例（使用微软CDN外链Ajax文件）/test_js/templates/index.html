@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>JS-Ajax</title>
+</head>
+<body>
+    <button onclick="getdata()">展示数据</button>
+    <table id="data" width="600px">   
+</body>
+</html>
+<script>
+    function getdata(){
+        //什么是ajax 引擎 其实就是是个对象  XMlHttpRequest
+        let obj=new XMLHttpRequest();
+        //通过ajax请求服务器 open(请求方法，url,同步/异步)方法
+        //请求方法 get post  默认是get
+        //url 路径地址
+        //同步（false）异步 true
+        obj.open("GET","/js/list",true);
+        //如果发送的请求为get 那么需要调用一个send(null)方法
+        obj.send(null);
+        //请求成功后拿到服务器返回的数据
+        //有两个属性标识着是否请求成功 readystate 请求状态值
+        /*0 未初始化状态：此时，已经创建了一个XMLHttpRequest对象
+    1准备发送状态：此时，已经调用了XMLHttpRequest对象的open方法，并且XMLHttpRequest对象已经准备好将一个请求发送到服务器端
+    2 已经发送状态：此时，已经通过send方法把一个请求发送到服务器端，但是还没有收到一个响应
+    3 正在接收状态：此时，已经接收到HTTP响应头部信息，但是消息体部分还没有完全接收到
+    4 完成响应状态：此时，已经完成了HTTP响应的接收
+        * */
+        //当readystate发生改变的时候会触发一个事件 onreadystatechange
+        //status 属性 http响应状态码  200 成功
+        obj.onreadystatechange = function(){
+    
+          if(obj.readyState==4&&obj.status==200){
+            //成功---->拿数据 数据存储在responseText这个属性中
+            //从接口中拿到的数据是一个json字符串  所以得将json处理一下 转成对象才能使用
+            let data=JSON.parse(obj.responseText)
+            let userlist=JSON.parse(data.data)
+            let str="<tr><td>姓名</td><td>年龄</td><td>性别</td></tr>"
+            for(let i=0;i<userlist.length;i++){
+              str+=`<tr><td>${userlist[i].username}</td><td>${userlist[i].age}</td><td>${userlist[i].gender}</td></tr>`
+            }
+            let table=document.querySelector("#data")
+            table.innerHTML=str
+          }
+        }
+      }
+</script>

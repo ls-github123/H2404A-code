@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax-jquery</title>
+</head>
+<body>
+<h1>测试jquery-ajax</h1>
+<button onclick="getdata()">点击</button>
+<table id="data">
+
+</table>
+
+</body>
+</html>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
+<!-- <script type="text/javascript" src="jquery-3.7.1.min.js"></script> -->
+<script>
+    // jquery提供一个函数 当所有html元素加载完毕后执行的函数
+    $(function() {
+        // 直接调用函数
+        getdata();
+    })
+
+    function getdata(){
+        // 点击按钮时弹出段落文本 jquery的html()函数相当于js的innerHTML 可以设置元素也可以获取元素
+        // html()传参数就是设置值 不传就是获取值 $('#id值') 就是id拿到当前元素
+        // alert($'#na').html()
+        // $('#na').html('你好')
+        $.ajax({
+            url:'/js/data/',
+            success:function(result){
+                // console.log(result.data);
+                let user = result.data;
+                let str="<tr><td>ID</td><td>姓名</td><td>性别</td></tr>";
+                for(let i=0;i<user.length;i++){
+                    str+=`<tr><td>${user[i].id}</td><td>${user[i].username}</td><td>${user[i].gender}</td><td><button onclick="del(${user[i].id})">删除</button></td></tr>`
+                }
+                $('#data').html(str)
+            }
+        })
+    }
+
+    // 删除方法
+    function del(id) {
+        // confirm('你确定删除吗?')
+        if (confirm('你确定要删除这条数据吗?')){
+            $.ajax({
+                    url:'/js/del_data/?id='+id,
+                    success:function(result) {
+                        if(result.code===200){
+                            alert('删除成功');
+                            // 删除成功后重新请求数据
+                            getdata()
+                        }
+                    }
+            })
+        }
+    }
+
+    // $.ajax({
+    //     url:'localhost:8000/js/data',
+    //     type: 'GET',
+    //     success: function(result){
+    //         // result是形式参数，名称自定 保存从接口返回的数据
+    //     },
+    // })
+</script>
