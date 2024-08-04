@@ -1,0 +1,11 @@
+带登录 注册的维修单提交
+user：
+username 用户名 password密码  sex 性别  hobby 爱好 address 城市 intro 简介
+upkeep(维修单表)
+title 需要维修的部分  content  具体情况描述  worker 维修工人  createtime时间  user 用户id
+功能：
+注册 登录
+维修添加
+维修编辑
+维修删除
+维修详情
