@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        a{
+            font-size:20px;
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<p><a href="/message/register/">注册</a>|<a href="/message/login">登录</a></p>
+{% if username %}
+    <p>{{ username }},欢迎你</p>
+{% endif %}
+<p><a href="/message/add">留言添加</a></p>
+    <hr>
+<table>
+    <tr>
+        <td>标题</td>
+        <td>内容</td>
+        <td>操作</td>
+    </tr>
+    {% for item in info %}
+        <tr>
+            <td>{{ item.title }}</td>
+            <td>{{ item.content }}</td>
+            <td><a>删除</a><a>编辑</a><a>详情</a></td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
