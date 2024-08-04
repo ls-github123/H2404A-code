@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>查看报修详情</title>
+</head>
+<body>
+    <h2>{{ upkeep.title }}</h2>
+    <p>{{ upkeep.content }}</p>
+    <p>维修人: {{ upkeep.worker }}</p>
+    <p>报修时间: {{ upkeep.createtime }}</p>
+    <a href="{% url 'home' %}">返回系统页</a>
+</body>
+</html>

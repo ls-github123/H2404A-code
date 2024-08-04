@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>报修系统(首页)</title>
+</head>
+<body>
+    <h2>Welcome, {{ user.username }}</h2>
+    <a href="{% url 'logout' %}">注销(退出)</a>
+    <a href="{% url 'add_upkeep' %}">我要报修</a>
+    <ul>
+        {% for upkeep in upkeeps %}
+            <li>
+                <a href="{% url 'detail_upkeep' upkeep.id %}">{{ upkeep.title }}(查看详情)</a>
+                <a href="{% url 'edit_upkeep' upkeep.id %}">编辑</a>
+                <form method="post" action="{% url 'delete_upkeep' upkeep.id %}">
+                    {% csrf_token %}
+                    <button type="submit">删除</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

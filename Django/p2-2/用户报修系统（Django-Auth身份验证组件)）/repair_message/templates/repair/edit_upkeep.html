@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>编辑报修信息</title>
+</head>
+<body>
+    <h2>编辑报修信息</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label>报修项目:</label>
+        <input type="text" name="title" value="{{ upkeep.title }}"><br>
+        <label>报修详情:</label>
+        <textarea name="content">{{ upkeep.content }}</textarea><br>
+        <label>维修人:</label>
+        <input type="text" name="worker" value="{{ upkeep.worker }}"><br>
+        <button type="submit">保存</button>
+        <button type='reset'>重置</button>
+    </form>
+</body>
+</html>

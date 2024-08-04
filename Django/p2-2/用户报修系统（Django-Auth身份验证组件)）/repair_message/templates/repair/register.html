@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>报修用户注册</title>
+</head>
+<body>
+    <h1>报修用户注册</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>用户名:</label>
+        <input type="text" name="username"><br>
+        <label>密码:</label>
+        <input type="password" name="password"><br>
+        <label>邮箱:</label>
+        <input type="email" name="email"><br>
+        <label>性别:</label>
+        <input type="text" name="gender"><br>
+        <label>爱好:</label>
+        <input type="text" name="hobby"><br>
+        <label>所属地区:</label>
+        <input type="text" name="address"><br>
+        <label>用户基本信息(选填):</label>
+        <textarea name="intro"></textarea><br>
+        <button type="submit">注册</button>
+        <button type='reset'>重置</button>
+    </form>
+</body>
+</html>
