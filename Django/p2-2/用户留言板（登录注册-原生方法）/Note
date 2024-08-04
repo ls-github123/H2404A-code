@@ -1,1 +1,15 @@
+实现一个带注册登录的留言板（将这周学的东西都串进去）
+1. 页面
+  注册页面
+  登录页面
+  留言班的展示页面
+ 留言的添加
+ 留言的编辑
+留言删除
+留言的详情
+2. 模型
+member：
+username 用户名 password密码  sex 性别  hobby 爱好 address 城市 intro 简介
 
+message:
+title 标题 content 内容  createtime时间  mem 用户id
