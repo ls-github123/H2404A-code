@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang='zh-cn'>
+<head>
+    <meta charset="UTF-8">
+    <title>教师信息编辑/{{ data.tname }}</title>
+</head>
+<body>
+    <h1 align="center">教师信息编辑</h1>
+    <div>
+        <table border="1" align="center">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <tr>
+                    <th>ID</th>
+                    <td>{{data.id}}</td>
+                </tr>
+
+                <tr>
+                    <th>教师姓名</th>
+                    <td><input type="text" name="teach_name" value="{{data.tname}}"></td>
+                </tr>
+
+                <tr>
+                    <th>教授课程</th>
+                    <td><input type="text" name="teach_class" value="{{ data.tclass }}"></td>
+                </tr>
+
+                <tr>
+                    <th>个人简介</th>
+                    <td><input type="text" name="teach_desc" value="{{ data.tdesc }}"></td>
+                </tr>
+
+                <tr>
+                    <th>数据添加时间</th>
+                    <td>{{ data.createtime }}</td>
+                </tr>
+
+                <tr>
+                    <th>数据修改时间(自动更新)</th>
+                    <td>{{ data.updatetime }}</td>
+                </tr>
+
+                <input type="hidden" name="teach_id" value="{{ data.id }}">
+                <tr>
+                    <th>操作</th>
+                    <td align="center">
+                        <input type="submit" value="保存">
+                        <input type="reset" value="重置">
+                    </td>
+                </tr>
+            </form>
+        </table>
+    </div>
+</body>
+</html>

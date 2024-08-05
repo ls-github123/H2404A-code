@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>教师信息展示</title>
+</head>
+<body>
+    <h1 align='center'>教师信息展示</h1>
+    <br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div align="center">
+        <label for="teach-name">请输入要查询的教师姓名关键字:</label>
+        <input type="text" id='teach-name' name="select">
+        <input type="submit" value="查询">
+    </form>
+    <br>
+    <p align="center"><a href="{% url 'add' %}">添加教师信息</a></p>
+    {% if data %}
+    <table border="1" align="center">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>教师姓名</th>
+                <th>教授课程</th>
+                <th>个人简介</th>
+                <th>创建时间</th>
+                <th>更新时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for info in data %}
+            <tr>
+                <td>{{ info.id }}</td> <!--数据库ID-->
+                <td>{{ info.tname }}</td> <!--教师姓名-->
+                <td>{{ info.tclass }}</td> <!--教授课程-->
+                <td>{{ info.tdesc }}</td> <!--个人简介-->
+                <td>{{ info.createtime }}</td> <!--数据添加时间-->
+                <td>{{ info.updatetime }}</td> <!--数据修改时间-->
+                <td><a href="{% url 'edit' info.id %}" target="_blank">编辑</a> | <a href="{% url 'del' info.id %}" onclick="return confirm('确定要删除这条记录吗？')">删除</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <br>
+        <div><h1 align="center">(未查询到对应数据！)</h1></div>
+    {% endif %}
+</body>
+</html>
