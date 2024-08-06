@@ -214,3 +214,14 @@ day09
     在Django中，URL配置是通过urls.py文件来实现的。
     对于使用DRF的APIView，开发者需要在urls.py文件中定义相应的URL模式，并将它们映射到APIView的视图函数或视图类。
     这样，当客户端发送请求到这些URL时，Django会根据URL配置找到对应的APIView，并执行相应的处理逻辑。
+
+
+day10
+1、普通序列化器和模型序列化器在Django REST framework中有何区别
+    普通序列化器（serializers.Serializer）是Django REST framework中最基本的序列化器类型，它可以序列化任意Python数据类型。
+    而模型序列化器（serializers.ModelSerializer）则是针对Django模型设计的，它可以根据模型的字段自动创建相应的序列化字段，使得序列化模型实例变得更加简单和快捷
+
+2、如何在序列化器中添加自定义的验证规则
+    在序列化器中，可以通过在字段上添加验证器（validators）来添加自定义的验证规则。
+    验证器是一个可调用对象，它接收要验证的值并返回True或引发ValidationError。
+    在字段定义中使用validators参数，可以将验证器与字段相关联。
