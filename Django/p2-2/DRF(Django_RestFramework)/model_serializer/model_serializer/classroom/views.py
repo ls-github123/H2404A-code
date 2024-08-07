@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 from django.forms import ValidationError
-from . import models
+from 。 import models
 
 # 写一个校验函数 验证教室名称的唯一性
 def Checkname(data):
@@ -17,7 +17,7 @@ def Checkname(data):
 
 # 序列化类
 class ClassroomSerializer(serializers.Serializer):
-    roomname = serializers.CharField(validators=[Checkname])
+    roomname = serializers.CharField(validators=[Checkname]) # 在序列化类里加校验 validators=[Checkname]
     roomuse = serializers.CharField()
     roomdesc = serializers.CharField()
     createtime = serializers.DateTimeField()
