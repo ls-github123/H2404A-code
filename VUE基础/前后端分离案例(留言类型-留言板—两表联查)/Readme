@@ -1,0 +1,13 @@
+新建项目  创建子应用  配置跨域
+留言类型 mescate    name(分类名称) intro(分类描述)
+留言表 message   title 标题 author 留言人  content 内容  cate 分类
+
+接口：
+mescate 增 删 改查  通过postman添加数据
+message 分页 添加 删除 修改  
+
+vue的功能：
+1、实现留言添加  分类从数据库中读取
+2、留言分页列表
+3、删除 
+4、修改
